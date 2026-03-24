@@ -1,0 +1,195 @@
+/* ================================================================
+   ACADX NAVBAR — Matches HomePage premium glass nav
+================================================================ */
+
+.acadx-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.08) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ─── Left: Branding ─── */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-branding {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  user-select: none;
+}
+
+.nav-logo-image {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin: 0;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED, #DB2777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Center: Nav Menu ─── */
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 4px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(167, 139, 250, 0.15);
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.04);
+}
+
+.acadx-nav-link {
+  text-decoration: none;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.acadx-nav-link:hover {
+  color: #7C3AED;
+  background: rgba(124, 58, 237, 0.08);
+  transform: translateY(-1px);
+}
+
+.acadx-nav-link.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #DB2777 100%);
+  background-size: 200% auto;
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+  font-weight: 800;
+  animation: gradientShine 3s ease infinite;
+}
+
+@keyframes gradientShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Right: User Profile + Logout ─── */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-profile-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.user-name-meta {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.role-badge {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+
+.role-badge.student {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.role-badge.faculty {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.role-badge.hod {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.role-badge.admin {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.nav-divider {
+  height: 28px;
+  width: 1px;
+  background: rgba(79, 70, 229, 0.15);
+}
+
+.nav-logout-btn {
+  background: transparent;
+  border: 1.5px solid rgba(79, 70, 229, 0.25);
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.nav-logout-btn:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .nav-menu {
+    display: none;
+  }
+}

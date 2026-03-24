@@ -1,0 +1,279 @@
+/* =========================
+   PAGE LAYOUT
+========================= */
+.milestones-page {
+  padding: 24px;
+  background: #f9fafb;
+  min-height: 100vh;
+}
+
+.project-block {
+  margin-bottom: 40px;
+}
+
+.project-block h3 {
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #111827;
+}
+
+/* =========================
+   MILESTONE CARD
+========================= */
+.milestone-card {
+  background: #ffffff;
+  padding: 18px;
+  margin-top: 18px;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.milestone-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+}
+
+/* Completed milestone */
+.milestone-card.completed {
+  border-left: 5px solid #16a34a;
+  background: #f0fdf4;
+}
+
+/* =========================
+   HEADER
+========================= */
+.milestone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.milestone-header h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
+}
+
+.status {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+  background: #eff6ff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-transform: capitalize;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+.milestone-card p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+/* =========================
+   PROGRESS BAR
+========================= */
+.progress-bar {
+  background: #e5e7eb;
+  height: 9px;
+  border-radius: 12px;
+  margin: 14px 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #16a34a);
+  border-radius: 12px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 13px;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+/* =========================
+   TASK ITEMS
+========================= */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+.task-item input[type="checkbox"] {
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+.task-item span {
+  line-height: 1.4;
+}
+
+.task-item .done {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* Faculty read-only */
+.task-item input:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+.complete-btn {
+  margin-top: 14px;
+  padding: 10px 16px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.complete-btn:hover {
+  background: #1e40af;
+}
+
+.complete-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* =========================
+   COMPLETED LABEL
+========================= */
+.completed-label {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #16a34a;
+}
+
+/* =========================
+   COMPLAINT BOX
+========================= */
+.complaint-box {
+  margin-top: 16px;
+  background: #fff7ed;
+  padding: 14px;
+  border-radius: 12px;
+  border-left: 4px solid #f97316;
+}
+
+.complaint-box textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.complaint-box textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.complaint-box button {
+  margin-top: 10px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.complaint-box button:hover {
+  background: #b91c1c;
+}
+
+/* =========================
+   AI SUGGESTIONS PANEL
+========================= */
+.ai-suggestions {
+  margin-top: 14px;
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 12px;
+  border-left: 4px solid #2563eb;
+}
+
+.ai-suggestions h5 {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  color: #111827;
+}
+
+.ai-suggestions ul {
+  padding-left: 18px;
+  margin: 6px 0;
+}
+
+.ai-suggestions li {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.ai-suggestions a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.ai-suggestions a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   AI ACTION BUTTONS
+========================= */
+.ai-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.ai-actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.ai-actions .accept {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.ai-actions .accept:hover {
+  background: #15803d;
+}
+
+.ai-actions .reject {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.ai-actions .reject:hover {
+  background: #b91c1c;
+}

@@ -1,0 +1,64 @@
+.exe-action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  gap: 6px;
+}
+
+.exe-btn-ai {
+  background: var(--slate-900);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.exe-btn-ai:hover:not(:disabled) {
+  background: black;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(219, 39, 119, 0.2);
+  border-color: var(--brand); /* Glow accent */
+}
+
+.exe-btn-ai:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+  border-color: #e2e8f0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.exe-btn-ai.is-loading {
+  padding-right: 30px;
+}
+
+.exe-helper-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--slate-400);
+  font-weight: 800;
+}
+
+.btn-icon {
+  font-size: 14px;
+  color: #f472b6; /* Gemini Pink */
+}
+
+.is-loading .btn-icon {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

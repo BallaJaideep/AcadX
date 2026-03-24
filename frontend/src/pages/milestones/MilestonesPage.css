@@ -1,0 +1,242 @@
+/* ================================================================
+   ACADX · STRATEGIC ROADMAP · Institutional Ticket v5
+   Dark Gemini Header with Roadmap Control Center.
+================================================================ */
+
+.vp-roadmap-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 64px 32px;
+}
+
+/* ── Dark Gemini Header (Roadmap Format) ── */
+.vp-roadmap-header {
+  margin-bottom: 64px;
+  padding: 100px 120px 64px !important;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  color: white;
+  border-radius: 56px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 50px 120px rgba(0, 0, 0, 0.2);
+}
+
+.vp-roadmap-header::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; width: 500px; height: 100%;
+  background: radial-gradient(circle at top right, rgba(219, 39, 119, 0.25), transparent 70%);
+  pointer-events: none;
+}
+
+.vp-header-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vp-stat-num {
+  font-size: 64px;
+  font-weight: 950;
+  color: white;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.vp-stat-lab {
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+
+/* ── Project Roadmap Card (Accordion Container) ── */
+.vp-project-roadmap-card {
+  position: relative;
+  background: white;
+  border-radius: 48px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.vp-proj-bar-accent {
+  position: absolute;
+  top: 0; left: 0; width: 14px; height: 100%;
+  z-index: 10;
+}
+
+/* Control Bar (Top Section) */
+.vp-project-ctrl-bar {
+  padding: 48px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.vp-project-ctrl-bar:hover {
+  background: white;
+}
+
+.vp-project-ctrl-bar.expanded {
+  border-bottom: 3px dashed #f1f5f9;
+  background: white;
+}
+
+.vp-ctrl-title {
+  font-size: 36px;
+  font-weight: 950;
+  color: var(--slate-900);
+  letter-spacing: -1.5px;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.vp-ctrl-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.vp-expand-indicator {
+  width: 44px; height: 44px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--slate-400);
+  transition: 0.3s;
+}
+
+.vp-project-ctrl-bar:hover .vp-expand-indicator {
+  color: var(--brand);
+  border-color: var(--brand);
+}
+
+/* Labels */
+.vp-label-mini {
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+/* Timeline/Grid Section */
+.vp-milestone-timeline {
+  padding: 48px 64px;
+  background: #ffffff;
+}
+
+.vp-milestone-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Formal Submission protocol */
+.vp-submission-protocol-card {
+  margin-top: 40px;
+  padding: 40px;
+  background: #f8fafc;
+  border-radius: 32px;
+  border: 2px dashed #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.vp-protocol-info h3 {
+  font-size: 20px;
+  font-weight: 850;
+  color: var(--slate-900);
+  margin-bottom: 8px;
+}
+
+.vp-protocol-info p {
+  font-size: 14px;
+  color: var(--slate-400);
+}
+
+.vp-protocol-btn {
+  padding: 18px 40px !important;
+  font-size: 16px !important;
+  white-space: nowrap;
+}
+
+/* Empty/No Roadmap States */
+.vp-no-roadmap-msg {
+  padding: 64px;
+  text-align: center;
+  color: var(--slate-400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.vp-no-roadmap-msg p {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Buttons */
+.vp-btn-minimal-danger {
+  padding: 8px 16px;
+  background: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fee2e2;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex; align-items: center; gap: 8px;
+  cursor: pointer; transition: 0.2s;
+}
+
+.vp-btn-minimal-danger:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .vp-roadmap-header { padding: 48px !important; }
+  .vp-project-ctrl-bar, .vp-milestone-timeline { padding: 40px; }
+  .vp-submission-protocol-card { flex-direction: column; align-items: stretch; text-align: center; }
+}
+
+/* Back Button Refinement */
+.vp-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 32px;
+  backdrop-filter: blur(10px);
+}
+
+.vp-back-btn:hover {
+  background: white;
+  color: #0f172a;
+  transform: translateX(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}

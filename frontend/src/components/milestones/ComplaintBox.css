@@ -1,0 +1,209 @@
+/* ================================================================
+   ACADX · SUPPORT SYSTEM · Roadmap Version
+================================================================ */
+
+.exe-support-system {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 0;
+}
+
+/* ── New Doubt Input ── */
+.support-request-panel {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.exe-textarea-v2 {
+  width: 100%;
+  border: 1.5px solid #f1f5f9;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 60px;
+  transition: 0.2s;
+}
+
+.exe-textarea-v2:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+}
+
+.vp-btn-glow {
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.vp-btn-glow:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15,23,42,0.2);
+}
+
+.vp-btn-glow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Doubt Cards ── */
+.active-doubt-focus {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doubt-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.doubt-card.resolved { border-left: 4px solid #10b981; }
+.doubt-card.pending { border-left: 4px solid #f59e0b; }
+
+.doubt-card-header {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+}
+
+.doubt-card.history-item .doubt-card-header {
+  cursor: pointer;
+}
+
+.history-item:hover {
+  background: #f8fafc;
+}
+
+.doubt-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.status-icon { flex-shrink: 0; }
+.status-icon.resolved { color: #10b981; }
+.status-icon.pending { color: #f59e0b; }
+
+.reason-preview {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+}
+
+.doubt-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.doubt-card-body {
+  padding: 0 20px 20px 48px;
+}
+
+/* ── Body Sections ── */
+.ai-diagnostic-result, .faculty-resolution-block {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.ai-diagnostic-result { background: #fffcf0; border: 1px solid #fef3c7; }
+.faculty-resolution-block { background: #f0fdf4; border: 1px solid #dcfce7; }
+
+.label-tiny-gold { font-size: 9px; font-weight: 900; color: #b45309; letter-spacing: 1px; margin-bottom: 8px; }
+.label-tiny-success { font-size: 9px; font-weight: 900; color: #166534; letter-spacing: 1px; margin-bottom: 8px; }
+
+.resolution-text {
+  font-size: 14px;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.escalated-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-top: 12px;
+}
+
+/* ── History Control ── */
+.history-toggle-area {
+  display: flex;
+  justify-content: center;
+}
+
+.history-btn {
+  background: #f1f5f9;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.history-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.doubt-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

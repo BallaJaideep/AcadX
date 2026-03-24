@@ -1,0 +1,13 @@
+.sidebar-link {
+  display: block;
+  padding: 10px 14px;
+  color: #e5e7eb;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.sidebar-link.active {
+  background: #2563eb;
+  color: #fff;
+}

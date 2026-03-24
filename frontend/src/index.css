@@ -1,0 +1,189 @@
+/* ================================================================
+   ACADX — GLOBAL BASE STYLES
+================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+}
+
+:root {
+  /* AcadX Premium Theme — Vibrant Gemini Pink/Lavender/Indigo */
+  --hero-gradient: linear-gradient(135deg, #4338ca 0%, #7c3aed 50%, #db2777 100%);
+  --accent-indigo: #4338ca;
+  --accent-purple: #7c3aed;
+  --accent-pink: #db2777;
+
+  --bg-color: #ffffff;
+  --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f3e8ff 45%, #fce7f3 90%, #ffffff 100%);
+
+  --glass-bg: rgba(255, 255, 255, 0.98);
+  /* Solid white base */
+  --glass-border: rgba(167, 139, 250, 0.45);
+  /* Vivid lavender border */
+  --glass-shadow: 0 15px 50px rgba(124, 58, 237, 0.12), 0 5px 15px rgba(0, 0, 0, 0.03);
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+
+  --gemini-gradient: linear-gradient(90deg, #4338ca, #7c3aed, #db2777, #f472b6);
+
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
+}
+
+/* ================================================================
+   GEMINI GRADIENT TEXT UTILITY
+================================================================ */
+.gemini-text {
+  background: var(--gemini-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* ================================================================
+   ANIMATIONS
+================================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ================================================================
+   GLASS PANEL UTILITY
+================================================================ */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 20px;
+  transition: var(--transition-smooth);
+}
+
+/* ================================================================
+   SHIMMER LOADER TEXT
+================================================================ */
+.shimmer-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #a78bfa;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: shimmer-fade 1.5s infinite ease-in-out;
+}
+
+@keyframes shimmer-fade {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ================================================================
+   SHARED ALERT UTILITIES
+================================================================ */
+.alert-error {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.alert-success {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #166534;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+/* ================================================================
+   AUTH CARD LAYOUT (shared by auth pages)
+================================================================ */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(79, 70, 229, 0.1);
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* ================================================================
+   SCROLLBAR STYLING
+================================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}

@@ -1,0 +1,396 @@
+/* ================================================================
+   ACADX · MILESTONE FLIGHT TICKET · Real Aviation Aesthetic
+================================================================ */
+
+.vp-milestone-ticket-wrapper {
+  display: flex;
+  background: #FEF9E7; /* Distinct Real Ticket Cream Stock */
+  border-radius: 40px;
+  overflow: visible;
+  position: relative;
+  box-shadow: 0 40px 100px rgba(184, 153, 105, 0.15);
+  border: 1px solid #E5D9C4;
+  margin-bottom: 40px;
+  animation: ticketSlideIn 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes ticketSlideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.vp-milestone-ticket-wrapper.finalized {
+  border-color: #10b981;
+}
+
+/* ── Main Boarding Pass Area ── */
+.vp-milestone-main-pass {
+  flex: 1;
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.vp-m-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #F3EADD;
+  padding-bottom: 20px;
+}
+
+.ticket-branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 950;
+  color: #94A3B8;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.ticket-gate-info {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.gate-label { font-size: 9px; font-weight: 900; color: #94A3B8; }
+.gate-value { font-size: 24px; font-weight: 950; color: #0F172A; line-height: 1; }
+
+.vp-m-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.vp-m-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.doubt-portal-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 950;
+  color: #64748B;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+
+.doubt-portal-toggle:hover {
+  background: #E2E8F0;
+  color: #0F172A;
+}
+
+.doubt-portal-toggle.is-active {
+  background: #0F172A;
+  color: white;
+  border-color: #0F172A;
+}
+
+.doubt-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #EF4444;
+  color: white;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 99px;
+  border: 2px solid #FEF9E7;
+}
+
+.vp-m-boarding-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.vp-m-boarding-status.active { background: #E0E7FF; color: #3730A3; }
+.vp-m-boarding-status.final { background: #DCFCE7; color: #166534; }
+
+.vp-m-ticket-desc {
+  font-size: 15px;
+  color: #64748B;
+  line-height: 1.6;
+  font-weight: 500;
+  margin: 0;
+}
+
+.vp-m-scroll-content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.doubt-portal-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.center-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: #FFF7ED;
+  border: 1px solid #FFEDD5;
+  border-radius: 12px;
+  color: #C2410C;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 1px;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Progress Zone ── */
+.vp-m-ticket-progress-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  border: 1px solid #F3EADD;
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-meta .percent {
+  font-size: 11px;
+  font-weight: 950;
+  color: #0F172A;
+  letter-spacing: 1px;
+}
+
+.progress-rail {
+  height: 8px;
+  background: white;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 1s ease-out;
+}
+
+/* ── Task Manifesto ── */
+.vp-m-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vp-m-no-tasks {
+  padding: 20px;
+  background: white;
+  border: 1.5px dashed #F3EADD;
+  border-radius: 16px;
+  font-size: 13px;
+  color: #94A3B8;
+  display: flex; align-items: center; gap: 10px;
+}
+
+/* ── Ticket Actions ── */
+.vp-m-ticket-actions {
+  display: flex;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 2px dashed #F3EADD;
+}
+
+.ticket-btn {
+  flex: 1;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.2s;
+  border: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.ticket-btn.primary { background: #0F172A; color: white; }
+.ticket-btn.secondary { background: white; color: #0F172A; border: 1.5px solid #E2E8F0; }
+
+.ticket-btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.2); }
+.ticket-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Ticket Stub (Vertical Side Section) ── */
+.vp-milestone-stub {
+  width: 280px;
+  background: #FEF9E7;
+  border-left: 3px dashed #F3EADD; /* Vertical Perforation */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 30px;
+}
+
+/* Circular Edge Circles */
+.vp-milestone-stub::before,
+.vp-milestone-stub::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #F2F0E9; /* Body background color */
+  border-radius: 50%;
+  left: -20px;
+  z-index: 20;
+  border: 1px solid #E5D9C4;
+}
+
+.vp-milestone-stub::before { top: -20px; }
+.vp-milestone-stub::after { bottom: -20px; }
+
+.stub-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.stub-top { display: flex; flex-direction: column; gap: 4px; border-bottom: 2px solid #F3EADD; padding-bottom: 16px; }
+.stub-label { font-size: 10px; font-weight: 950; color: #94A3B8; letter-spacing: 2px; }
+.stub-id { font-size: 20px; font-weight: 950; color: #0F172A; font-family: 'JetBrains Mono', monospace; }
+
+.stub-middle { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.stub-stat { display: flex; flex-direction: column; gap: 2px; }
+.stub-stat .lab { font-size: 9px; font-weight: 900; color: #B49969; letter-spacing: 1.5px; }
+.stub-stat .val { font-size: 32px; font-weight: 950; color: #0F172A; line-height: 1; }
+
+.stub-barcode {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 0;
+}
+
+.barcode-bars {
+  display: flex;
+  align-items: flex-end;
+  height: 40px;
+  gap: 2px;
+}
+
+.barcode-bars .bar {
+  background: #0F172A;
+  height: 100%;
+}
+
+.barcode-text {
+  font-size: 9px;
+  font-weight: 900;
+  color: #94A3B8;
+  letter-spacing: 4px;
+}
+
+.footer-tag {
+  font-size: 10px;
+  font-weight: 950;
+  color: #0F172A;
+  background: #FDF2F8;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #FCE7F3;
+}
+
+/* ── AI RESOURCES ── */
+.vp-m-ai-resources {
+  padding: 24px;
+  background: #FFFBF0;
+  border: 1px solid #FEF3C7;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.label-small-gold {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 900;
+  color: #B45309;
+  letter-spacing: 1px;
+}
+
+.resources-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.res-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.res-link.yt { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
+.res-link.tut { background: #E0F2FE; color: #075985; border: 1px solid #BAE6FD; }
+.res-link.doc { background: #F0FDF4; color: #166534; border: 1px solid #DCFCE7; }
+
+.res-link:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+/* ── Help section ── */
+.vp-m-help-section {
+  padding-top: 20px;
+  border-top: 2px dashed #F3EADD;
+}
+
+@media (max-width: 1100px) {
+  .vp-milestone-ticket-wrapper { flex-direction: column; }
+  .vp-milestone-stub { 
+    width: 100%; 
+    border-left: none; 
+    border-top: 3px dashed #F3EADD; 
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vp-milestone-stub::before { left: 50%; top: -20px; transform: translateX(-50%); }
+  .vp-milestone-stub::after { display: none; }
+}

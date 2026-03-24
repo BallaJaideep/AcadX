@@ -1,0 +1,85 @@
+/* Layout Variables */
+:root {
+  --navbar-height: 60px;
+}
+
+/* ─── Frame (ULTRA-VIBRANT MESH THEME) ─── */
+.acadx-app-frame {
+  min-height: 100vh;
+  position: relative;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+.acadx-app-frame::before,
+.acadx-app-frame::after {
+  content: "";
+  position: fixed;
+  inset: -100px;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.6;
+}
+
+.acadx-app-frame::before {
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(219, 39, 119, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.08) 0%, transparent 50%);
+  animation: mesh-move-a 25s infinite alternate ease-in-out;
+}
+
+.acadx-app-frame::after {
+  background: 
+    radial-gradient(circle at 80% 10%, rgba(249, 168, 212, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 20% 90%, rgba(124, 58, 237, 0.12) 0%, transparent 45%);
+  animation: mesh-move-b 30s infinite alternate ease-in-out;
+}
+
+@keyframes mesh-move-a {
+  0% { transform: scale(1) translate(0, 0) rotate(0deg); }
+  100% { transform: scale(1.1) translate(50px, 30px) rotate(5deg); }
+}
+
+@keyframes mesh-move-b {
+  0% { transform: scale(1) translate(0, 0) rotate(0deg); }
+  100% { transform: scale(1.2) translate(-60px, -40px) rotate(-8deg); }
+}
+
+/* ─── Main Content ─── */
+.acadx-main-viewport {
+  padding-top: var(--navbar-height);
+  min-height: 100vh;
+}
+
+.acadx-content-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px 60px;
+}
+
+/* ─── Premium Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .acadx-content-container {
+    padding: 0 16px 40px;
+  }
+}

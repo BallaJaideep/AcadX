@@ -1,0 +1,284 @@
+   Deep Navy, Slate Gold, and Alabaster Tactical UI.
+================================================================ */
+
+.hod-root {
+  overflow-x: hidden;
+  background: #F8FAFC; /* Clean Ivory Foundation */
+  min-height: 100vh;
+}
+
+.hod-executive-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── EXECUTIVE MINI HEADER ── */
+.hod-panoramic-mini {
+  background: linear-gradient(135deg, #000 0%, #1A1A1A 100%); /* Obsidian Shine */
+  padding: 60px 80px;
+  border-radius: 40px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.auth-badge-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #D4AF37;
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  background: rgba(212, 175, 55, 0.1);
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.executive-view-title {
+  font-size: 40px;
+  font-weight: 950;
+  letter-spacing: -1.5px;
+  margin: 0;
+}
+
+.executive-view-subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.executive-stats-pill {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(212, 175, 55, 0.1);
+  padding: 20px 32px;
+  border-radius: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.pulse-icon-gold { color: #B49969; animation: pulseGold 2s infinite; }
+@keyframes pulseGold { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+.stat-v { display: flex; flex-direction: column; }
+.stat-v .count { font-size: 24px; font-weight: 950; line-height: 1; color: white; }
+.stat-v .label { font-size: 9px; font-weight: 900; color: #D4AF37; letter-spacing: 1.5px; }
+
+/* ── PROTOCOL CARD STACK ── */
+.protocol-card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.protocol-card {
+  background: white; /* Reverted to Clean White */
+  border-radius: 32px;
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+  position: relative;
+  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.03);
+}
+
+.protocol-card:hover {
+  transform: translateY(-5px);
+  border-color: #B49969;
+  box-shadow: 0 40px 80px rgba(184, 153, 105, 0.08);
+}
+
+.protocol-side-accent {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 10px;
+  background: #0F172A;
+}
+
+.protocol-card.pending .protocol-side-accent { background: #B49969; }
+.protocol-card.resolved .protocol-side-accent { background: #10B981; }
+
+.protocol-card-header {
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #F8FAFC;
+}
+
+.petitioner-profile { display: flex; align-items: center; gap: 20px; }
+
+.profile-orb {
+  width: 56px; height: 56px;
+  background: #0F172A;
+  color: #B49969;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 950;
+}
+
+.id-tag { font-size: 10px; font-weight: 950; color: #94A3B8; letter-spacing: 1.5px; }
+.petitioner-name { font-size: 20px; font-weight: 900; color: #0F172A; margin: 0; }
+
+.protocol-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.protocol-status-badge.pending { background: #FEFAF2; color: #D4AF37; border: 1px solid rgba(212, 175, 55, 0.1); }
+.protocol-status-badge.resolved { background: #F0FDF4; color: #10B981; border: 1px solid rgba(16, 185, 129, 0.1); }
+
+.status-dot-glow { width: 8px; height: 8px; border-radius: 50%; }
+.pending .status-dot-glow { background: #F59E0B; box-shadow: 0 0 10px #F59E0B; }
+.resolved .status-dot-glow { background: #10B981; box-shadow: 0 0 10px #10B981; }
+
+/* Body Content */
+.protocol-card-body {
+  padding: 40px;
+}
+
+.statement-metadata {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 950;
+  color: #94A3B8;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+
+.grievance-manifesto {
+  background: #F8FAFC;
+  padding: 32px;
+  border-radius: 20px;
+  font-size: 16px;
+  color: #334155;
+  line-height: 1.8;
+  font-weight: 600;
+  border: 1px solid #F1F5F9;
+}
+
+/* Footer & Verdicts */
+.protocol-card-footer {
+  padding: 40px;
+  background: #FDFDFD;
+  border-top: 1px solid #F1F5F9;
+}
+
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.security-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #94A3B8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.executive-resolve-btn {
+  background: #0F172A;
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 18px;
+  font-weight: 950;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex; align-items: center; gap: 14px;
+}
+
+.executive-resolve-btn:hover {
+  background: #B49969;
+  transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(180, 153, 105, 0.2);
+}
+
+.verdict-display {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.verdict-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 950;
+  color: #0F172A;
+  letter-spacing: 1.5px;
+}
+
+.verdict-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.6;
+  padding-left: 24px;
+  border-left: 3px solid #F1F5F9;
+}
+
+.timestamp-row {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #94A3B8;
+}
+
+/* ── STATES ── */
+.executive-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 0;
+  gap: 24px;
+}
+
+.loader-ring {
+  width: 48px; height: 48px;
+  border: 4px solid #F1F5F9;
+  border-top-color: #B49969;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.executive-empty-state {
+  text-align: center;
+  padding: 100px 40px;
+  color: #94A3B8;
+}
+
+.ghost-icon { opacity: 0.1; margin-bottom: 24px; }
+
+@media (max-width: 768px) {
+  .hod-panoramic-mini { padding: 40px; flex-direction: column; text-align: center; gap: 32px; }
+  .protocol-card-header { flex-direction: column; gap: 32px; align-items: flex-start; }
+  .action-row { flex-direction: column; gap: 32px; width: 100%; }
+}

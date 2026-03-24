@@ -1,0 +1,87 @@
+/* ================================================================
+   ACADX · QUICK PROMPTS · Premium Integrated Styling
+================================================================ */
+
+.exe-quick-prompts {
+  margin-top: 10px;
+}
+
+.prompts-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.prompts-header .spark-icon {
+  font-size: 16px;
+  color: #DB2777;
+  filter: drop-shadow(0 0 4px rgba(219, 39, 119, 0.4));
+}
+
+.prompts-title {
+  font-size: 12px;
+  font-weight: 850;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+.prompts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exe-prompt-chip {
+  background: white;
+  border: 1px solid #E2E8F0;
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: #334155;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exe-prompt-chip::after {
+  content: '→';
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: 0.3s;
+  color: #DB2777;
+  font-weight: 900;
+}
+
+.exe-prompt-chip:hover {
+  border-color: #DB2777;
+  background: #FDF2F8;
+  color: #DB2777;
+  transform: translateX(6px);
+  box-shadow: 0 10px 20px rgba(219, 39, 119, 0.08);
+}
+
+.exe-prompt-chip:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animations for entry */
+.exe-prompt-chip:nth-child(1) { animation: slideInPrompt 0.4s ease forwards 0.1s; opacity: 0; }
+.exe-prompt-chip:nth-child(2) { animation: slideInPrompt 0.4s ease forwards 0.2s; opacity: 0; }
+.exe-prompt-chip:nth-child(3) { animation: slideInPrompt 0.4s ease forwards 0.3s; opacity: 0; }
+.exe-prompt-chip:nth-child(4) { animation: slideInPrompt 0.4s ease forwards 0.4s; opacity: 0; }
+.exe-prompt-chip:nth-child(5) { animation: slideInPrompt 0.4s ease forwards 0.5s; opacity: 0; }
+.exe-prompt-chip:nth-child(6) { animation: slideInPrompt 0.4s ease forwards 0.6s; opacity: 0; }
+
+@keyframes slideInPrompt {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

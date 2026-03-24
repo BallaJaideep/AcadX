@@ -1,0 +1,106 @@
+/* Container Stack */
+.exe-request-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual Request Item */
+.request-item {
+  padding: 24px !important;
+  border-left: 4px solid #0f172a; /* Midnight Slate accent */
+}
+
+.request-card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Typography Hierarchy */
+.request-project-title {
+  font-size: 18px;
+  color: #0f172a;
+  margin: 4px 0 15px 0;
+  font-weight: 700;
+}
+
+.petitioner-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  background: #f8fafc;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.info-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin: 0;
+}
+
+/* Proposal Text */
+.proposal-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #64748b;
+  font-style: italic;
+  padding-left: 12px;
+  border-left: 2px solid #a68966; /* Gold accent */
+}
+
+/* Actions */
+.request-actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 15px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.exe-btn-success-sm {
+  background: #166534;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.exe-btn-success-sm:hover {
+  background: #15803d;
+  transform: translateY(-1px);
+}
+
+.exe-btn-danger-sm {
+  background: transparent;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.exe-btn-danger-sm:hover {
+  background: #fef2f2;
+  border-color: #dc2626;
+}
+
+/* Header Utilities */
+.request-counter {
+  font-size: 11px;
+  font-weight: 800;
+  color: #0f172a;
+  background: #f1f5f9;
+  padding: 6px 14px;
+  border-radius: 20px;
+}

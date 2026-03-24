@@ -1,0 +1,101 @@
+/* ================================================================
+   ACADX · TASK ROW · Roadmap Component v5
+   Supreme Size with Vibrant Professional styling.
+================================================================ */
+
+.exe-task-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 24px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  user-select: none;
+}
+
+.exe-task-row:hover:not(.is-locked) {
+  background: #f8fafc;
+  border-color: var(--brand);
+  transform: translateX(8px); /* Subtle indentation on hover */
+}
+
+/* Completed State */
+.exe-task-row.is-done {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.exe-task-row.is-done .task-text {
+  color: var(--slate-400);
+  text-decoration: line-through;
+}
+
+/* Locked / Disabled State */
+.exe-task-row.is-locked {
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* Custom Checkbox Styling (Large Scale) */
+.task-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-checkbox {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.custom-checkbox.checked {
+  background: #10b981;
+  border-color: #10b981;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+/* The 'L' checkmark logic */
+.check-mark {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 950;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%) rotate(45deg) scaleX(-1);
+  display: block;
+}
+
+/* Text Grouping */
+.task-label-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.task-text {
+  font-size: 16px;
+  color: var(--slate-900);
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.task-audit-tag {
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  padding: 4px 12px;
+  border-radius: 8px;
+  letter-spacing: 1.5px;
+}

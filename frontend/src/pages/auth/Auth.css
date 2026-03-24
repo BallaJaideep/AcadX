@@ -1,0 +1,295 @@
+/* src/pages/auth/Auth.css */
+
+.acadx-auth-page {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    /* Prevent scrolling if not needed */
+}
+
+/* Left Panel: Branding / Hero */
+.auth-hero-pane {
+    flex: 1;
+    /* Takes 50% */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    background: var(--bg-gradient);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add a beautiful ambient glow to the background */
+.auth-hero-pane::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(66, 133, 244, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.auth-hero-pane::after {
+    content: "";
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(234, 67, 53, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 500px;
+}
+
+.hero-logo {
+    height: 48px;
+    margin-bottom: 40px;
+}
+
+.hero-title {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    letter-spacing: -2px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Right Panel: Interactive Form */
+.auth-form-pane {
+    flex: 1;
+    /* Takes 50% */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: #ffffff;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.02);
+    z-index: 5;
+}
+
+.auth-card-wrapper {
+    width: 100%;
+    max-width: 440px;
+    padding: 48px;
+    /* Glass panel styles applied via global class */
+}
+
+/* Adjust card width for register */
+.auth-card-wrapper.register-wide {
+    max-width: 520px;
+}
+
+.form-header {
+    margin-bottom: 32px;
+}
+
+.form-greeting {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+.form-subgreeting {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Form Elements */
+.acadx-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.acadx-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+
+.acadx-input {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+.acadx-input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.1);
+}
+
+.acadx-select {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 14px;
+    transition: var(--transition-smooth);
+}
+
+.acadx-select:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.1);
+}
+
+.acadx-btn-primary {
+    background: #0f172a;
+    color: #ffffff;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: var(--transition-smooth);
+}
+
+.acadx-btn-primary:hover:not(:disabled) {
+    background: #1e293b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+}
+
+.acadx-btn-primary:active {
+    transform: translateY(0);
+}
+
+.acadx-btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Footer Links & Alerts */
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.acadx-footer-link {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.acadx-footer-link:hover {
+    color: #4285f4;
+}
+
+.acadx-alert-error {
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
+    color: #b91c1c;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Legal text bottom */
+.legal-footer {
+    position: absolute;
+    bottom: 24px;
+    left: 60px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+/* Responsive Rules */
+@media (max-width: 900px) {
+    .acadx-auth-page {
+        flex-direction: column;
+    }
+
+    .auth-hero-pane {
+        flex: 0 0 auto;
+        padding: 40px 24px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .legal-footer {
+        display: none;
+    }
+
+    .hero-logo {
+        margin: 0 auto 24px auto;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .auth-form-pane {
+        flex: 1;
+        padding: 24px;
+    }
+
+    .form-row-grid {
+        grid-template-columns: 1fr;
+    }
+}

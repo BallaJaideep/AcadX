@@ -1,0 +1,151 @@
+/* Layout Identity */
+.exe-tag.danger {
+  color: #dc2626;
+  border-bottom: 1px solid #fee2e2;
+  padding-bottom: 4px;
+}
+
+.stat-pill.danger {
+  background: #fef2f2;
+  color: #991b1b;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #fee2e2;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #dc2626;
+  border-radius: 50%;
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+/* Dossier Card Styling */
+.grievance-dossier {
+  border-left: 6px solid #dc2626 !important; /* Urgent Red */
+  padding: 0 !important;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.dossier-header {
+  padding: 24px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #fff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.dossier-project-title {
+  font-size: 18px;
+  color: #0f172a;
+  margin: 4px 0;
+  font-weight: 700;
+}
+
+.petitioner-link {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.week-tag {
+  background: #0f172a;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Statement Zone */
+.statement-zone {
+  padding: 24px 30px;
+  background: #fdfdfd;
+}
+
+.statement-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #1e293b;
+  font-style: italic;
+  margin: 8px 0;
+}
+
+.statement-path {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Resolution Zone */
+.resolution-zone {
+  padding: 24px 30px;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+}
+
+.exe-refined-textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-top: 8px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.exe-refined-textarea:focus {
+  outline: none;
+  border-color: #0f172a;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.dossier-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-disclaimer {
+  font-size: 11px;
+  color: #94a3b8;
+  max-width: 60%;
+  line-height: 1.4;
+}
+
+.exe-btn-primary.danger {
+  background: #dc2626;
+}
+
+.exe-btn-primary.danger:hover {
+  background: #b91c1c;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px !important;
+}
+
+.success-icon {
+  font-size: 40px;
+  color: #16a34a;
+  margin-bottom: 20px;
+}

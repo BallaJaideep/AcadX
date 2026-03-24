@@ -1,0 +1,523 @@
+/* ================================================================
+   ACADX · HOD EXECUTIVE DASHBOARD · Obsidian Header v10
+   Black & Gold Header with Clean Ivory Command Components.
+================================================================ */
+
+.hod-root {
+  padding: 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #F8FAFC; /* Clean Ivory Foundation */
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(15, 23, 42, 0.02) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(184, 153, 105, 0.03) 0%, transparent 40%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  animation: hodRootFade 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes hodRootFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── EXECUTIVE PANORAMIC HEADER ── */
+.hod-header-panoramic {
+  background: linear-gradient(135deg, #000000 0%, #1A1A1A 100%); /* Obsidian Shine */
+  padding: 80px 100px;
+  border-radius: 48px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hod-header-panoramic::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; width: 600px; height: 100%;
+  background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.2), transparent 70%);
+  pointer-events: none;
+}
+
+.auth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #D4AF37; /* Molten Gold */
+  margin-bottom: 24px;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.hod-main-title {
+  font-size: 64px;
+  font-weight: 950;
+  letter-spacing: -3px;
+  line-height: 1;
+  margin: 0 0 16px;
+}
+
+.gold-text { color: #D4AF37; }
+
+.hod-subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 800px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.header-stats-minimal {
+  display: flex;
+  gap: 48px;
+}
+
+.min-stat { display: flex; flex-direction: column; gap: 4px; }
+.min-stat .lab { font-size: 10px; font-weight: 900; color: rgba(255, 255, 255, 0.4); letter-spacing: 2px; }
+.min-stat .val { font-size: 14px; font-weight: 950; letter-spacing: 1px; }
+.min-stat .val.healthy { color: #10B981; }
+.min-stat .val.ivory { color: white; }
+
+/* ── COMMAND TILES ── */
+.hod-command-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.command-tile {
+  background: white; /* Reverted to Clean White */
+  padding: 40px;
+  border-radius: 40px;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.03);
+}
+
+.command-tile:hover {
+  transform: translateY(-10px);
+  border-color: #D4AF37;
+  box-shadow: 0 40px 100px rgba(212, 175, 55, 0.08);
+}
+
+.tile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tile-icon { color: #64748B; }
+.tile-trend { color: #10B981; }
+
+.tile-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 950;
+  color: #94A3B8;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.tile-value {
+  font-size: 64px;
+  font-weight: 950;
+  color: #0F172A; /* Reverted to Deep Navy */
+  line-height: 1;
+  letter-spacing: -3px;
+}
+
+.tile-footer {
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748B;
+  padding-top: 20px;
+  border-top: 1px solid #F1F5F9;
+}
+
+/* Stat Glow Variations */
+.stat-glow.navy:hover { box-shadow: 0 40px 100px rgba(15, 23, 42, 0.05); }
+.stat-glow.gold .tile-icon { color: #D4AF37; }
+.stat-glow.gold:hover { box-shadow: 0 40px 100px rgba(212, 175, 55, 0.1); }
+
+.vibrant-badge {
+  background: #0F172A;
+  color: #D4AF37;
+  font-size: 10px;
+  font-weight: 950;
+  padding: 4px 12px;
+  border-radius: 8px;
+  letter-spacing: 1px;
+}
+
+/* ── MAIN LAYOUT ── */
+.hod-main-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px; /* Reduced sidebar slightly for balance */
+  gap: 32px;
+  align-items: start;
+}
+
+.registry-card {
+  background: white; /* Reverted to Clean White */
+  border-radius: 40px;
+  border: 1px solid #E2E8F0;
+  padding: 40px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+.registry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid #F8FAFC;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 950;
+  color: #0F172A;
+  margin: 0 0 8px;
+  letter-spacing: -1px;
+}
+
+.registry-count {
+  font-size: 13px;
+  font-weight: 800;
+  color: #94A3B8;
+  letter-spacing: 0.5px;
+}
+
+.registry-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.search-bar-executive {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  padding: 12px 24px;
+  border-radius: 16px;
+  width: 320px;
+  transition: 0.3s;
+}
+
+.search-bar-executive:focus-within {
+  border-color: #D4AF37;
+  background: white;
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.05);
+}
+
+.search-bar-executive input {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0F172A;
+  outline: none;
+  width: 100%;
+}
+
+.export-btn-minimal {
+  padding: 12px 24px;
+  background: #0F172A; /* Deep Navy Button */
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* ── DOSSIER TABLE ── */
+.dossier-table-wrap {
+  margin: 0 -48px;
+}
+
+.dossier-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dossier-table th {
+  text-align: left;
+  padding: 20px 48px;
+  font-size: 11px;
+  font-weight: 950;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.dossier-table td {
+  padding: 32px 48px;
+  border-bottom: 1px solid #F8FAFC;
+  vertical-align: middle;
+}
+
+.entity-name-main {
+  display: block;
+  font-size: 17px;
+  font-weight: 900;
+  color: #0F172A;
+  margin-bottom: 4px;
+}
+
+.entity-id-sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: #94A3B8;
+}
+
+.semester-pill {
+  background: #F1F5F9;
+  color: #475569;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.dossier-progress-block {
+  min-width: 240px;
+}
+
+.progress-text-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.proj-name-mini {
+  font-size: 13px;
+  font-weight: 800;
+  color: #475569;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.proj-percent {
+  font-size: 13px;
+  font-weight: 950;
+  color: #0F172A;
+}
+
+.dossier-progress-rail {
+  height: 6px;
+  background: #F1F5F9;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.dossier-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0F172A, #D4AF37);
+  border-radius: 99px;
+  box-shadow: 0 0 10px rgba(15, 23, 42, 0.1);
+}
+
+.engagement-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 900;
+  color: #D4AF37;
+  font-size: 15px;
+}
+
+.registry-audit-btn {
+  background: white;
+  border: 1px solid #F1F5F9;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 900;
+  color: #0F172A;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.registry-audit-btn:hover {
+  background: #FEFAF2;
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+/* ── INTELLIGENCE SIDEBAR ── */
+.hod-sidebar-intelligence {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hod-sidebar-card {
+  background: white;
+  border-radius: 40px;
+  padding: 32px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.03);
+}
+
+.sidebar-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sidebar-title {
+  font-size: 13px;
+  font-weight: 950;
+  color: #0F172A;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.faculty-resource-tile {
+  padding: 16px 0;
+  border-bottom: 1px solid #F8FAFC;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.faculty-resource-tile:last-child { border: none; }
+.faculty-resource-tile:hover { transform: translateX(5px); }
+
+.resource-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.resource-name { font-size: 14px; font-weight: 800; color: #0F172A; }
+.resource-load { font-size: 12px; font-weight: 950; color: #B49969; }
+
+.resource-rail-bg {
+  height: 4px;
+  background: #F1F5F9;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.resource-rail-fill {
+  height: 100%;
+  background: #0F172A;
+  border-radius: 99px;
+}
+
+/* Leadership Ranking */
+.leadership-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #F8FAFC;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.leadership-row:hover {
+  background: white;
+  border-color: #B49969;
+  transform: scale(1.02);
+}
+
+.rank-badge {
+  width: 32px; height: 32px;
+  background: #0F172A;
+  color: #B49969;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 950; font-size: 14px;
+}
+
+.leader-info { flex: 1; display: flex; flex-direction: column; }
+.leader-name { font-size: 14px; font-weight: 850; color: #0F172A; }
+.leader-dept { font-size: 11px; font-weight: 700; color: #94A3B8; text-transform: uppercase; }
+.leader-points { font-family: 'JetBrains Mono', monospace; font-weight: 900; color: #D4AF37; }
+
+/* ── STATES ── */
+.hod-loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 32px;
+  background: #F8FAFC;
+}
+
+.executive-spinner {
+  width: 60px; height: 60px;
+  border: 4px solid #F1F5F9;
+  border-top-color: #0F172A;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-state-panel {
+  text-align: center;
+  padding: 100px 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error-icon { color: #DB2777; margin-bottom: 24px; opacity: 0.5; }
+
+.reauth-btn {
+  margin-top: 32px;
+  padding: 16px 40px;
+  background: #0F172A;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+  .hod-command-grid { grid-template-columns: repeat(2, 1fr); }
+  .hod-main-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .hod-root { padding: 24px; }
+  .hod-header-panoramic { padding: 48px; flex-direction: column; text-align: center; align-items: center; }
+  .hod-main-title { font-size: 40px; }
+  .header-stats-minimal { margin-top: 32px; }
+  .hod-command-grid { grid-template-columns: 1fr; }
+}
