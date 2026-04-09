@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { 
   ArrowLeft, Calendar, User, Shield, BarChart2, 
   CheckCircle, Clock, FileText, ChevronRight,
-  MessageSquare, AlertCircle, Zap, Hash, Info, Lock, Globe, Download, Trash
+  MessageSquare, AlertCircle, Zap, Hash, Info, Lock, Globe, Download, Trash, Activity
 } from "lucide-react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -25,12 +25,15 @@ const ProjectDetails = () => {
   const [error, setError] = useState("");
   const [isExporting, setIsExporting] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [messageText, setMessageText] = useState("");
+  const [isSendingMsg, setIsSendingMsg] = useState(false);
 
   useEffect(() => {
     const loadProject = async () => {
       try {
         const res = await api.get(`/projects/${id}`);
-        setProject(res.data.project || res.data);
+        const proj = res.data.project || res.data;
+        setProject(proj);
       } catch (err) {
         setError(err?.response?.data?.message || "Failed to load project");
       } finally {
@@ -74,6 +77,20 @@ const ProjectDetails = () => {
       alert(err.response?.data?.message || "Failed to delete project");
     } finally {
       setIsDeleting(false);
+    }
+  };
+
+  const handleSendMessage = async () => {
+    if (!messageText.trim()) return;
+    setIsSendingMsg(true);
+    try {
+      const res = await api.post(`/projects/${id}/message`, { text: messageText });
+      setProject(res.data.project);
+      setMessageText("");
+    } catch (err) {
+      alert(err.response?.data?.message || "Failed to send message");
+    } finally {
+      setIsSendingMsg(false);
     }
   };
 
@@ -155,6 +172,12 @@ const ProjectDetails = () => {
   };
 
   const cfg = getStatusCfg(project.status || project.derivedStatus);
+
+  // New projects from ~March 31, 2026 onwards get the Github Analytics feature
+  const isNewFeatureEligible = new Date(project.createdAt) >= new Date("2026-03-31T00:00:00Z");
+  
+  // Is it marked as completed?
+  const isProjectCompleted = (project.status || project.derivedStatus || "pending").toLowerCase() === "completed";
 
   return (
     <div className="vp-root">
@@ -251,6 +274,37 @@ const ProjectDetails = () => {
                   </Link>
                 </div>
               </div>
+              
+              {/* DEVELOPER VELOCITY WIDGET (ONLY FOR ELIGIBLE NEW PROJECTS) */}
+              {isNewFeatureEligible && (
+                <div className="vp-ticket-section large">
+                  <div className="vp-section-label"><Activity size={16} /> Developer Velocity</div>
+                  <div className="vp-ticket-progress-hub">
+                    
+                    {/* Warning if completed but no github repo */}
+                    {isProjectCompleted && !project.githubUrl && (
+                      <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid #ef4444', color: '#ef4444', padding: '12px', borderRadius: '8px', marginBottom: '16px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <AlertCircle size={18} />
+                        <span><strong>Warning:</strong> Project is marked as completed, but there is no GitHub repository matching. Please link your repository in the Analytics Dashboard to correct this issue.</span>
+                      </div>
+                    )}
+
+                    <div style={{ padding: '20px', background: '#0f172a', borderRadius: '12px', border: '1px solid #1e293b', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ paddingRight: '16px' }}>
+                         <h3 style={{ margin: '0 0 4px', fontSize: '1.1rem', color: '#fff' }}>Performance Analytics Dashboard</h3>
+                         <p style={{ margin: 0, fontSize: '0.9rem', color: '#94a3b8' }}>View commit heatmaps, pull requests, and real-time health scores.</p>
+                      </div>
+                      <Link to={`/student/project/${id}/analytics`} style={{ background: 'var(--brand)', color: 'white', padding: '12px 24px', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap', transition: 'transform 0.2s', display: 'block' }}>
+                        Open Analytics
+                      </Link>
+                    </div>
+
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="vp-ticket-row">
               <div className="vp-ticket-section">
                 <div className="vp-section-label"><Shield size={16} /> Technical Mentorship</div>
                 {project.mentor ? (
@@ -264,11 +318,63 @@ const ProjectDetails = () => {
                 ) : (
                   <div className="vp-ticket-mentor empty">
                     <p>No mentor allocated.</p>
-                    <Link to={`/student/request-mentor?projectId=${project._id}`} className="vp-ticket-btn-action">Request Expert</Link>
+                    {user?.role === "student" && (
+                      <Link to={`/student/request-mentor?projectId=${project._id}`} className="vp-ticket-btn-action">Request Expert</Link>
+                    )}
                   </div>
                 )}
               </div>
             </div>
+
+            {/* PROJECT COMMUNICATION THREAD */}
+            {project.mentor && (user?.role === "student" || ["faculty", "hod", "admin"].includes(user?.role)) && (
+              <div className="vp-ticket-row">
+                <div className="vp-ticket-section large">
+                  <div className="vp-section-label"><MessageSquare size={16} /> Technical Discussion Board</div>
+                  <div className="vp-discussion-board">
+                    <div className="vp-discussion-history">
+                      {project.messages && project.messages.length > 0 ? (
+                        project.messages.map((msg, idx) => {
+                           const isMe = msg.sender?._id === user?._id;
+                           return (
+                             <div key={idx} className={`vp-message-bubble ${isMe ? 'me' : 'them'}`}>
+                               <div className="vp-msg-meta">
+                                 <span className="vp-msg-author">{msg.sender?.name || "Unknown"}</span>
+                                 <span className="vp-msg-time">{new Date(msg.createdAt).toLocaleString()}</span>
+                               </div>
+                               <div className="vp-msg-text">{msg.text}</div>
+                             </div>
+                           );
+                        })
+                      ) : (
+                        <div className="vp-empty-discussion">No messages yet. Open communication regarding technical requirements here.</div>
+                      )}
+                    </div>
+                    <div className="vp-discussion-input-area">
+                      <textarea 
+                        className="vp-discussion-input"
+                        placeholder="Discuss project requirements, updates, or technical issues..."
+                        value={messageText}
+                        onChange={(e) => setMessageText(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            handleSendMessage();
+                          }
+                        }}
+                      />
+                      <button 
+                        className="vp-btn-send-msg" 
+                        onClick={handleSendMessage} 
+                        disabled={isSendingMsg || !messageText.trim()}
+                      >
+                        {isSendingMsg ? "..." : "Post Reply"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="vp-ticket-footer">
               <div className="vp-ticket-actions-hub">
@@ -278,7 +384,9 @@ const ProjectDetails = () => {
                   </button>
                 )}
                 <Link to="/milestones" className="vp-ticket-btn-outline"><Clock size={18} /> Milestones</Link>
-                <Link to="/student/complaint" className="vp-ticket-btn-outline"><MessageSquare size={18} /> Support</Link>
+                {user?.role === "student" && (
+                  <Link to="/student/complaint" className="vp-ticket-btn-outline"><MessageSquare size={18} /> Support</Link>
+                )}
               </div>
               <div className="vp-ticket-meta-grid">
                 <div className="vp-meta-cell"><span>Department</span><strong>{user?.department || "N/A"}</strong></div>

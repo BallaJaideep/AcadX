@@ -108,7 +108,8 @@ export const getProjectById = async (req, res) => {
 
     const project = await Project.findById(id)
       .populate("studentId", "name email role")
-      .populate("mentorId", "name email role");
+      .populate("mentorId", "name email role")
+      .populate("messages.sender", "name role");
 
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
@@ -377,3 +378,37 @@ export const updateProject = async (req, res) => {
   }
 };
 
+/**
+ * POST PROJECT MESSAGE
+ * POST /api/projects/:id/message
+ */
+export const addProjectMessage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { text } = req.body;
+    
+    if (!text || !text.trim()) return res.status(400).json({ message: "Message text is required" });
+
+    const project = await Project.findById(id);
+    if (!project) return res.status(404).json({ message: "Project not found" });
+
+    // Validate access
+    const isOwner = project.studentId.toString() === req.user._id.toString();
+    const isMentor = project.mentorId && project.mentorId.toString() === req.user._id.toString();
+    
+    if (!isOwner && !isMentor) return res.status(403).json({ message: "You are not authorized to post messages here." });
+
+    project.messages.push({
+      sender: req.user._id,
+      text: text.trim()
+    });
+
+    await project.save();
+    await project.populate("messages.sender", "name role");
+
+    return res.json({ message: "Message sent successfully", project });
+  } catch (error) {
+    console.error("addProjectMessage error:", error.message);
+    return res.status(500).json({ message: "Failed to send message", error: error.message });
+  }
+};

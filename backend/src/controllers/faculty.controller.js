@@ -48,6 +48,8 @@ export const getFacultyProjectProgress = async (req, res) => {
             : totalWeeks === 0
             ? "not_started"
             : "in_progress",
+        currentHealthScore: project.currentHealthScore,
+        healthStatus: project.healthStatus,
       });
     }
 

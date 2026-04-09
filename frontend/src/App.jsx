@@ -25,6 +25,8 @@ import CreateProject from "./pages/student/CreateProject";
 import RequestMentor from "./pages/student/RequestMentor";
 import StudentRequests from "./pages/student/StudentRequests";
 import ProjectDetails from "./pages/student/ProjectDetails";
+import ProjectAnalytics from "./pages/student/ProjectAnalytics";
+import GlobalAnalyticsRedirect from "./pages/student/GlobalAnalyticsRedirect";
 import RaiseHodComplaint from "./pages/student/RaiseHodComplaint";
 import FinalSubmission from "./pages/student/FinalSubmission";
 import TechnicalRecordGenerator from "./pages/student/TechnicalRecordGenerator";
@@ -194,6 +196,28 @@ const AppRoutes = () => {
             <RoleRoute roles={["student", "faculty", "hod", "admin"]}>
               <AppLayout>
                 <ProjectDetails />
+              </AppLayout>
+            </RoleRoute>
+          }
+        />
+
+        <Route
+          path="/student/project/:id/analytics"
+          element={
+            <RoleRoute roles={["student", "faculty", "hod", "admin"]}>
+              <AppLayout>
+                <ProjectAnalytics />
+              </AppLayout>
+            </RoleRoute>
+          }
+        />
+
+        <Route
+          path="/student/analytics"
+          element={
+            <RoleRoute roles={["student"]}>
+              <AppLayout>
+                <GlobalAnalyticsRedirect />
               </AppLayout>
             </RoleRoute>
           }

@@ -68,6 +68,7 @@ const Navbar = () => {
               {renderLink("/student/dashboard", "Dashboard")}
               {renderLink("/student/create-project", "Initiate Track")}
               {renderLink("/student/requests", "Mentor Requests")}
+              {renderLink("/student/analytics", "Dev Pulse")}
               {renderLink("/milestones", "Milestones")}
               {renderLink("/portfolio", "Portfolio")}
               {renderLink("/student/complaint", "HOD Complaint")}

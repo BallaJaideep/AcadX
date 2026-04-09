@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import app from "./app.js";
 import connectDB from "./config/db.js";
 
+// --- Cron Jobs ---
+import cron from "node-cron";
+import { runHealthMonitorJob } from "./jobs/healthMonitorJob.js";
+
 // Load ENV variables
 dotenv.config();
 
@@ -15,6 +19,13 @@ const startServer = async () => {
     console.log("🔄 Connecting to MongoDB...");
     await connectDB();
     console.log("✅ Successfully connected to MongoDB!");
+
+    // --- Start Background Jobs ---
+    // Runs every day at midnight (0 0 * * *)
+    cron.schedule("0 0 * * *", () => {
+      runHealthMonitorJob();
+    });
+    console.log("⏰ Scheduled nightly Project Health Monitor CRON job.");
 
     // Create HTTP server
     const server = http.createServer(app);

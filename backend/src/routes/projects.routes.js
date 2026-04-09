@@ -11,6 +11,7 @@ import {
   deleteProject,
   downloadProjectReport,
   updateProject,
+  addProjectMessage,
 } from "../controllers/projects.controller.js";
 
 const router = Router();
@@ -78,6 +79,16 @@ router.get(
   "/:id/download",
   authorizeRoles("student", "faculty", "hod", "admin"),
   downloadProjectReport
+);
+
+/* ======================================================
+   POST PROJECT MESSAGE
+   POST /api/projects/:id/message
+====================================================== */
+router.post(
+  "/:id/message",
+  authorizeRoles("student", "faculty", "hod", "admin"),
+  addProjectMessage
 );
 
 export default router;

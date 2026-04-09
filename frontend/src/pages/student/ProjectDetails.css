@@ -730,3 +730,139 @@
   text-transform: uppercase;
   font-weight: 800;
 }
+
+/* ── Project Discussion Board ── */
+.vp-discussion-board {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.vp-discussion-history {
+  padding: 24px;
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #090e1a;
+}
+
+.vp-empty-discussion {
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+  font-style: italic;
+  padding: 20px;
+}
+
+.vp-message-bubble {
+  max-width: 80%;
+  padding: 14px 18px;
+  border-radius: 16px;
+  animation: vpMessageFadeIn 0.3s ease;
+}
+
+@keyframes vpMessageFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vp-message-bubble.me {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--brand) 0%, #4f46e5 100%);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.vp-message-bubble.them {
+  align-self: flex-start;
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #334155;
+  border-bottom-left-radius: 4px;
+}
+
+.vp-msg-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+
+.vp-message-bubble.me .vp-msg-meta {
+  color: rgba(255,255,255,0.7);
+}
+
+.vp-message-bubble.them .vp-msg-meta {
+  color: #94a3b8;
+}
+
+.vp-msg-author {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vp-msg-time {
+  margin-left: 12px;
+}
+
+.vp-msg-text {
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.vp-discussion-input-area {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #0f172a;
+  border-top: 1px solid #1e293b;
+}
+
+.vp-discussion-input {
+  flex: 1;
+  background: #020617;
+  border: 1px solid #1e293b;
+  color: white;
+  padding: 14px;
+  border-radius: 12px;
+  resize: none;
+  height: 60px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.vp-discussion-input:focus {
+  border-color: var(--brand);
+}
+
+.vp-btn-send-msg {
+  background: var(--brand);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0 24px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.vp-btn-send-msg:hover:not(:disabled) {
+  background: var(--brand-hover);
+  transform: translateY(-2px);
+}
+
+.vp-btn-send-msg:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

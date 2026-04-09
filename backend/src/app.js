@@ -22,6 +22,7 @@ import portfolioRoutes from "./routes/portfolio.routes.js";
 import chatRoutes from "./routes/chat.routes.js";
 import finalSubmissionRoutes from "./routes/finalSubmission.routes.js";
 import aiProjectRoutes from "./routes/aiProject.routes.js";
+import analyticsRoutes from "./routes/analytics.routes.js";
 
 dotenv.config();
 
@@ -102,7 +103,9 @@ app.use("/api/hod", hodRoutes);
 app.use("/api/hod-complaints", hodComplaintsRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/final-submission", finalSubmissionRoutes);
-app.use("/api/ai/project", aiProjectRoutes);
+// Analytics & Health Monitoring
+app.use("/api/analytics", analyticsRoutes);
+
 /* ======================================================
    404 HANDLER (MUST BE LAST)
 ====================================================== */

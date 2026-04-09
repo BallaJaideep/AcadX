@@ -94,6 +94,42 @@ const projectSchema = new mongoose.Schema(
       ref: "Idea",
       default: null,
     },
+
+    // --- Developer Analytics / Project Health ---
+    githubUrl: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    currentHealthScore: {
+      type: Number,
+      default: 100, // Range: 0 to 100
+      min: 0,
+      max: 100,
+    },
+    healthStatus: {
+      type: String,
+      enum: ["Healthy", "Warning", "Critical"],
+      default: "Healthy",
+    },
+    // --- Direct Communication Thread ---
+    messages: [
+      {
+        sender: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+          required: true
+        },
+        text: {
+          type: String,
+          required: true
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now
+        }
+      }
+    ]
   },
   { timestamps: true }
 );

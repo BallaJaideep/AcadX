@@ -20,7 +20,7 @@ const finalSubmissionSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["submitted", "approved", "rejected"],
+      enum: ["submitted", "approved", "rejected", "changes_requested"],
       default: "submitted",
     },
 
