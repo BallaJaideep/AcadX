@@ -13,6 +13,7 @@ import {
   Layers,
   ExternalLink
 } from "lucide-react";
+import { fileUrl } from "../../utils/fileUrl";
 import "./AuditPages.css";
 
 const FacultyDetails = () => {
@@ -82,7 +83,7 @@ const FacultyDetails = () => {
         <div className="audit-profile-row">
           <div className="audit-avatar-frame">
             {faculty.profilePhoto ? (
-              <img src={`http://localhost:5000/${faculty.profilePhoto}`} alt="" />
+              <img src={fileUrl(faculty.profilePhoto)} alt="" />
             ) : faculty.name?.charAt(0)}
           </div>
           <div className="audit-identity">

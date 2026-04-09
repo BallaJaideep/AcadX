@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../api/client";
+import { fileUrl } from "../../utils/fileUrl";
 import "./FinalSubmission.css";
 
 const FinalSubmission = () => {
@@ -143,7 +144,7 @@ const FinalSubmission = () => {
                         </div>
                         <div style={{ display: 'flex', gap: '10px' }}>
                            <a 
-                              href={`http://localhost:5000${submission.pptPath}`}
+                              href={fileUrl(submission.pptPath)}
                               target="_blank" rel="noreferrer"
                               className="exe-btn-ghost-small"
                               style={{ textDecoration: 'none', background: '#e0e7ff', color: '#4f46e5', border: '1px solid #c7d2fe', padding: '6px 12px', borderRadius: '4px' }}
@@ -151,7 +152,7 @@ const FinalSubmission = () => {
                               👁 View PPT
                            </a>
                            <a 
-                              href={`http://localhost:5000${submission.pptPath}`}
+                              href={fileUrl(submission.pptPath)}
                               download="Project_Presentation"
                               target="_blank" rel="noreferrer"
                               className="exe-btn-primary"
@@ -169,7 +170,7 @@ const FinalSubmission = () => {
                         </div>
                         <div style={{ display: 'flex', gap: '10px' }}>
                            <a 
-                              href={`http://localhost:5000${submission.documentPath}`}
+                              href={fileUrl(submission.documentPath)}
                               target="_blank" rel="noreferrer"
                               className="exe-btn-ghost-small"
                               style={{ textDecoration: 'none', background: '#e0e7ff', color: '#4f46e5', border: '1px solid #c7d2fe', padding: '6px 12px', borderRadius: '4px' }}
@@ -177,7 +178,7 @@ const FinalSubmission = () => {
                               👁 View PDF
                            </a>
                            <a 
-                              href={`http://localhost:5000${submission.documentPath}`}
+                              href={fileUrl(submission.documentPath)}
                               download="Project_Technical_Document"
                               target="_blank" rel="noreferrer"
                               className="exe-btn-primary"

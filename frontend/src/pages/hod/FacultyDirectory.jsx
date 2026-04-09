@@ -12,6 +12,7 @@ import {
   Trash2,
   Activity
 } from "lucide-react";
+import { fileUrl } from "../../utils/fileUrl";
 import "./DirectoryPages.css";
 
 const FacultyDirectory = () => {
@@ -145,7 +146,7 @@ const FacultyDirectory = () => {
                         <td>
                            <div className="entity-cell-executive">
                               <div className="entity-avatar">
-                                {f.profilePhoto ? <img src={`http://localhost:5000/${f.profilePhoto}`} alt="" /> : f.name?.charAt(0)}
+                                {f.profilePhoto ? <img src={fileUrl(f.profilePhoto)} alt="" /> : f.name?.charAt(0)}
                               </div>
                               <div className="entity-text">
                                 <span className="entity-name">{f.name}</span>

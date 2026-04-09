@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../api/client";
+import { fileUrl } from "../../utils/fileUrl";
 import "./FacultyDashboard.css"; // Reuse dashboard styling
 
 const EvaluateSubmission = () => {
@@ -102,7 +103,7 @@ const EvaluateSubmission = () => {
                        </div>
                        <div style={{ display: 'flex', gap: '10px' }}>
                           <a 
-                             href={`http://localhost:5000${submission.pptPath}`}
+                             href={fileUrl(submission.pptPath)}
                              target="_blank" rel="noreferrer"
                              className="exe-btn-ghost-small"
                              style={{ textDecoration: 'none', background: '#e0e7ff', color: '#4f46e5', border: '1px solid #c7d2fe', padding: '6px 12px', borderRadius: '4px' }}
@@ -110,7 +111,7 @@ const EvaluateSubmission = () => {
                              👁 View Presentation
                           </a>
                           <a 
-                             href={`http://localhost:5000${submission.pptPath}`}
+                             href={fileUrl(submission.pptPath)}
                              download="Project_Presentation"
                              target="_blank" rel="noreferrer"
                              className="exe-btn-primary"
@@ -127,23 +128,23 @@ const EvaluateSubmission = () => {
                          <span className="sub-entity">Submitted: {new Date(submission.createdAt || submission.updatedAt).toLocaleDateString()}</span>
                        </div>
                        <div style={{ display: 'flex', gap: '10px' }}>
-                          <a 
-                             href={`http://localhost:5000${submission.documentPath}`}
-                             target="_blank" rel="noreferrer"
-                             className="exe-btn-ghost-small"
-                             style={{ textDecoration: 'none', background: '#e0e7ff', color: '#4f46e5', border: '1px solid #c7d2fe', padding: '6px 12px', borderRadius: '4px' }}
-                          >
-                             👁 View Document
-                          </a>
-                          <a 
-                             href={`http://localhost:5000${submission.documentPath}`}
-                             download="Project_Technical_Document"
-                             target="_blank" rel="noreferrer"
-                             className="exe-btn-primary"
-                             style={{ textDecoration: 'none', background: '#475569', padding: '6px 12px', fontSize: '12px' }}
-                          >
-                             ⬇ Download PDF
-                          </a>
+                           <a 
+                              href={fileUrl(submission.documentPath)}
+                              target="_blank" rel="noreferrer"
+                              className="exe-btn-ghost-small"
+                              style={{ textDecoration: 'none', background: '#e0e7ff', color: '#4f46e5', border: '1px solid #c7d2fe', padding: '6px 12px', borderRadius: '4px' }}
+                           >
+                              👁 View Document
+                           </a>
+                           <a 
+                              href={fileUrl(submission.documentPath)}
+                              download="Project_Technical_Document"
+                              target="_blank" rel="noreferrer"
+                              className="exe-btn-primary"
+                              style={{ textDecoration: 'none', background: '#475569', padding: '6px 12px', fontSize: '12px' }}
+                           >
+                              ⬇ Download PDF
+                           </a>
                        </div>
                     </div>
                  </div>
