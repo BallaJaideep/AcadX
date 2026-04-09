@@ -1,6 +1,6 @@
 /* ================================================================
-   ACADX — HOME PAGE v2 — Premium Professional Design
-================================================================ */
+   ACADX --- GLOBAL HOME PAGE --- Premium Executive UI
+   ================================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap');
 
 :root {
@@ -607,7 +607,7 @@
     font-weight: 400;
 }
 
-/* Three role cards — full edge-to-edge Netflix strip */
+/* Three role cards - full edge-to-edge Netflix strip */
 .roles-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
