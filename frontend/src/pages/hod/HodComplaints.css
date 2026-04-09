@@ -277,8 +277,36 @@
 
 .ghost-icon { opacity: 0.1; margin-bottom: 24px; }
 
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hod-root { padding: 24px; }
+  .hod-panoramic-mini { padding: 40px; }
+  .executive-view-title { font-size: 32px; }
+  .protocol-card-header, .protocol-card-body, .protocol-card-footer { padding: 32px; }
+}
+
 @media (max-width: 768px) {
-  .hod-panoramic-mini { padding: 40px; flex-direction: column; text-align: center; gap: 32px; }
-  .protocol-card-header { flex-direction: column; gap: 32px; align-items: flex-start; }
-  .action-row { flex-direction: column; gap: 32px; width: 100%; }
+  .hod-root { padding: 16px; }
+  .hod-panoramic-mini { padding: 32px 24px; flex-direction: column; text-align: left; align-items: flex-start; gap: 24px; border-radius: 24px; margin-bottom: 24px; }
+  
+  .executive-stats-pill { width: 100%; padding: 16px 24px; }
+  
+  .protocol-card { border-radius: 24px; }
+  .protocol-card-header { flex-direction: column; gap: 24px; align-items: flex-start; padding: 24px; }
+  .petitioner-profile { width: 100%; }
+  
+  .protocol-card-body { padding: 24px; }
+  .grievance-manifesto { padding: 24px; font-size: 14px; }
+  
+  .protocol-card-footer { padding: 24px; }
+  .action-row { flex-direction: column; gap: 24px; align-items: flex-start; }
+  .executive-resolve-btn { width: 100%; justify-content: center; }
+  
+  .verdict-text { padding-left: 16px; }
+}
+
+@media (max-width: 480px) {
+  .executive-view-title { font-size: 28px; }
+  .petitioner-name { font-size: 16px; }
+  .profile-orb { width: 48px; height: 48px; font-size: 20px; }
 }

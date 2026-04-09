@@ -509,15 +509,53 @@
   cursor: pointer;
 }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 1400px) {
   .hod-command-grid { grid-template-columns: repeat(2, 1fr); }
   .hod-main-layout { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hod-root { padding: 24px; }
-  .hod-header-panoramic { padding: 48px; flex-direction: column; text-align: center; align-items: center; }
-  .hod-main-title { font-size: 40px; }
-  .header-stats-minimal { margin-top: 32px; }
+  .hod-header-panoramic { padding: 40px; }
+  .hod-main-title { font-size: 48px; }
+  .registry-card, .hod-sidebar-card { padding: 24px; border-radius: 24px; }
+  
+  .hod-command-grid { gap: 16px; margin-bottom: 32px; }
+  .command-tile { padding: 24px; border-radius: 24px; gap: 16px; }
+  .tile-value { font-size: 48px; }
+  
+  .registry-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .registry-actions { width: 100%; flex-direction: column; align-items: stretch; }
+  .search-bar-executive { width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .hod-root { padding: 16px; }
+  .hod-header-panoramic { padding: 32px 24px; border-radius: 24px; text-align: left; }
+  .hod-main-title { font-size: 36px; }
+  .hod-subtitle { font-size: 14px; }
+  
+  .header-stats-minimal { flex-direction: column; gap: 16px; margin-top: 24px; }
+  
+  .hod-command-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .command-tile { padding: 16px; border-radius: 16px; }
+  .tile-label { font-size: 9px; margin-bottom: 4px; }
+  .tile-value { font-size: 32px; }
+  .tile-footer { font-size: 11px; padding-top: 12px; }
+  
+  .registry-card { padding: 16px; border-radius: 20px; }
+  .section-title { font-size: 24px; }
+  
+  /* Horizontal scroll for table */
+  .dossier-table-wrap { margin: 0 -16px; padding: 0 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .dossier-table th, .dossier-table td { padding: 12px 16px; min-width: 140px; }
+  .dossier-progress-block { min-width: 180px; }
+  .entity-name-main { font-size: 14px; }
+  .entity-id-sub { font-size: 11px; }
+}
+
+@media (max-width: 480px) {
+  .hod-main-title { font-size: 32px; }
   .hod-command-grid { grid-template-columns: 1fr; }
 }

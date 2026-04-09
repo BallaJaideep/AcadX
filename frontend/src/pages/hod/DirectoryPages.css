@@ -255,13 +255,54 @@
 
 .btn-delete:hover { background: #E11D48; color: white; border-color: #E11D48; }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 1400px) {
   .registry-stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (max-width: 1024px) {
+  .registry-root { padding: 24px; }
+  .registry-header-panoramic { padding: 40px; }
+  .registry-main-title { font-size: 36px; }
+  .registry-section { padding: 24px; border-radius: 24px; }
+  
+  .registry-stats-grid { gap: 16px; margin-bottom: 32px; }
+  .registry-stat-tile { padding: 24px; border-radius: 24px; }
+  .rst-value { font-size: 32px; }
+}
+
 @media (max-width: 900px) {
-  .registry-header-panoramic { padding: 40px; flex-direction: column; align-items: flex-start; gap: 32px; }
-  .registry-header-actions { width: 100%; }
+  .registry-header-panoramic { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .registry-header-actions { width: 100%; flex-direction: column; align-items: stretch; }
   .registry-search-wrap { width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .registry-root { padding: 16px; }
+  .registry-header-panoramic { padding: 24px; border-radius: 24px; margin-bottom: 24px; }
+  .registry-main-title { font-size: 28px; }
+  
+  .registry-stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .registry-stat-tile { padding: 16px; border-radius: 16px; }
+  .rst-label { font-size: 9px; }
+  .rst-value { font-size: 24px; }
+  
+  .registry-section { padding: 16px; border-radius: 20px; }
+  .rs-header { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; }
+  .rs-title { font-size: 20px; }
+  
+  /* Horizontal scroll for table */
+  .registry-table-wrap { margin: 0 -16px; padding: 0 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .registry-table th, .registry-table td { padding: 12px 16px; }
+  
+  .entity-avatar { width: 32px; height: 32px; border-radius: 8px; font-size: 14px; }
+  .entity-name { font-size: 14px; }
+  .entity-id { font-size: 11px; }
+  
+  .val-points { font-size: 13px; }
+  .registry-audit-btn, .btn-delete { padding: 6px 12px; font-size: 9px; }
+}
+
+@media (max-width: 480px) {
   .registry-stats-grid { grid-template-columns: 1fr; }
 }

@@ -1315,7 +1315,7 @@
     }
 
     .hero-title {
-        font-size: 48px;
+        font-size: 52px;
     }
 
     .hero-card-wrap {
@@ -1327,59 +1327,92 @@
     .stats-section {
         padding: 72px 48px;
     }
-
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
 }
 
 @media (max-width: 900px) {
     .home-nav {
         padding: 0 24px;
+        height: 60px;
     }
 
-    .home-nav-links {
+    .home-nav-links, .home-nav-brand-wrap + .home-nav-links {
         display: none;
     }
 
     .hero-body {
         flex-direction: column;
-        padding: 100px 24px 60px;
+        padding: 120px 24px 60px;
+        text-align: center;
+        gap: 60px;
     }
 
     .hero-content-left {
         max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .hero-title {
-        font-size: 38px;
+        font-size: 42px;
+    }
+
+    .hero-sub {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-stats-row {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-stat {
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 16px;
+    }
+
+    .hero-stat:nth-child(2n) {
+        border-right: none;
+    }
+
+    .hero-stat:nth-last-child(-n+2) {
+        border-bottom: none;
     }
 
     .hero-card-wrap {
         width: 100%;
-    }
-
-    .roles-section,
-    .features-section,
-    .stats-section {
-        padding: 60px 24px;
+        margin: 0;
     }
 
     .roles-grid {
         grid-template-columns: 1fr;
+        padding: 0 24px 60px;
     }
 
-    .role-card {
-        height: 440px;
+    .features-section {
+        padding: 60px 24px;
     }
 
     .feature-row {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 32px;
+        text-align: center;
     }
 
-    .feature-row.reverse {
-        direction: ltr;
+    .feature-tags {
+        justify-content: center;
+    }
+
+    .feature-visual {
+        order: -1;
     }
 
     .stats-grid {
@@ -1387,16 +1420,55 @@
     }
 
     .home-footer {
-        padding: 48px 24px 28px;
+        padding: 40px 24px;
     }
 
     .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .footer-bottom {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .hero-title {
+        font-size: 34px;
+        letter-spacing: -1px;
+    }
+
+    .hero-btn-primary, .hero-btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-stat-num {
+        font-size: 20px;
+    }
+
+    .hero-login-card {
+        padding: 24px 20px;
+    }
+
+    .login-tabs {
+        flex-direction: column;
+    }
+
+    .section-heading {
+        font-size: 32px;
+    }
+
+    .stats-section {
+        padding: 60px 24px;
+    }
+
+    .stats-title {
+        font-size: 28px;
+        margin-bottom: 32px;
     }
 }

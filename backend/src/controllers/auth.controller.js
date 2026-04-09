@@ -73,15 +73,18 @@ export const loginUser = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
+      console.warn(`🔐 LOGIN FAILED: User not found for email: ${email}`);
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
+      console.warn(`🔐 LOGIN FAILED: Password mismatch for email: ${email}`);
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
     const token = generateToken(user._id);
+    console.log(`✅ LOGIN SUCCESS: Session established for ${email} (${user.role})`);
 
     return res.json({
       message: "Login successful",

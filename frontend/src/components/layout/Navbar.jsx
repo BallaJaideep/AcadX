@@ -1,20 +1,27 @@
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const role = user?.role;
 
   const handleLogout = () => {
     logout();
+    setIsMenuOpen(false);
     navigate("/");
   };
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   const renderLink = (to, label) => (
     <NavLink
       to={to}
+      onClick={closeMenu}
       className={({ isActive }) => `acadx-nav-link ${isActive ? "active" : ""}`}
     >
       {label}
@@ -22,13 +29,13 @@ const Navbar = () => {
   );
 
   return (
-    <header className="acadx-navbar">
+    <header className={`acadx-navbar ${isMenuOpen ? "drawer-open" : ""}`}>
       <div className="nav-container">
 
-        {/* LEFT: Branding — matches HomePage exactly */}
+        {/* LEFT: Branding */}
         <div className="nav-left">
-          <div className="nav-branding">
-            {/* Shield SVG Logo — same as HomePage */}
+          <div className="nav-branding" onClick={() => { closeMenu(); navigate("/"); }}>
+            {/* Shield SVG */}
             <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
               <defs>
                 <linearGradient id="db-bgSq" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
@@ -61,14 +68,13 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* CENTER: Navigation Links */}
-        <div className="nav-center">
+        {/* CENTER: Navigation Links (Desktop) */}
+        <div className="nav-center desktop-only">
           {role === "student" && (
             <nav className="nav-menu">
               {renderLink("/student/dashboard", "Dashboard")}
               {renderLink("/student/create-project", "Initiate Track")}
               {renderLink("/student/requests", "Mentor Requests")}
-              {renderLink("/student/analytics", "Dev Pulse")}
               {renderLink("/milestones", "Milestones")}
               {renderLink("/portfolio", "Portfolio")}
               {renderLink("/student/complaint", "HOD Complaint")}
@@ -92,8 +98,8 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* RIGHT: User Info + Logout */}
-        <div className="nav-right">
+        {/* RIGHT: User Info + Logout (Desktop) */}
+        <div className="nav-right desktop-only">
           {user?.role && (
             <div className="user-profile-summary">
               <span className="user-name-meta">{user.name || "Administrator"}</span>
@@ -110,6 +116,62 @@ const Navbar = () => {
           </button>
         </div>
 
+        {/* MOBILE TOGGLE */}
+        <button className="nav-mobile-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+      </div>
+
+      {/* MOBILE DRAWER OVERLAY */}
+      <div className={`nav-mobile-drawer ${isMenuOpen ? "active" : ""}`}>
+        <div className="drawer-content">
+          <div className="drawer-user-header">
+            <div className={`drawer-avatar-small ${user?.role?.toLowerCase()}`}>
+              {user?.name?.charAt(0) || "A"}
+            </div>
+            <div className="drawer-user-info">
+              <span className="drawer-name">{user?.name}</span>
+              <span className="drawer-role">{user?.role}</span>
+            </div>
+          </div>
+
+          <nav className="drawer-nav">
+            {role === "student" && (
+              <>
+                {renderLink("/student/dashboard", "Dashboard")}
+                {renderLink("/student/create-project", "Initiate Track")}
+                {renderLink("/student/requests", "Mentor Requests")}
+                {renderLink("/milestones", "Milestones")}
+                {renderLink("/portfolio", "Portfolio")}
+                {renderLink("/student/complaint", "HOD Complaint")}
+              </>
+            )}
+
+            {["faculty", "admin"].includes(role) && (
+              <>
+                {renderLink("/faculty/dashboard", "Mentoring Dashboard")}
+                {renderLink("/milestones", "Milestones")}
+              </>
+            )}
+
+            {["hod", "admin"].includes(role) && (
+              <>
+                {renderLink("/hod/dashboard", "Analytics")}
+                {renderLink("/hod/faculty-directory", "Faculty Audit")}
+                {renderLink("/hod/student-directory", "Student Directory")}
+                {renderLink("/hod/complaints", "Complaints")}
+              </>
+            )}
+            
+            <div className="drawer-divider"></div>
+            
+            <button className="drawer-logout-btn" onClick={handleLogout}>
+              Logout System
+            </button>
+          </nav>
+        </div>
+        <div className="drawer-backdrop" onClick={closeMenu}></div>
       </div>
     </header>
   );

@@ -22,6 +22,25 @@
   backdrop-filter: blur(20px);
 }
 
+@media (max-width: 1024px) {
+  .sp-institutional-header {
+    padding: 60px;
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .sp-header-controls {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .sp-institutional-header {
+    padding: 40px 24px;
+    border-radius: 24px;
+  }
+}
+
 .sp-institutional-header::after {
   content: '';
   position: absolute; right: -100px; top: -100px; width: 400px; height: 400px;
@@ -40,7 +59,7 @@
 .sp-header-main { flex: 1; }
 
 .sp-name-massive {
-  font-size: 110px; /* EVEN BIGGER */
+  font-size: 110px;
   font-weight: 950;
   letter-spacing: -6px;
   line-height: 0.85;
@@ -48,8 +67,15 @@
   background: linear-gradient(90deg, #fff, #c4b5fd 40%, #f9a8d4 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-transform: uppercase; /* MORE IMPACTFUL */
+  text-transform: uppercase;
   filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+@media (max-width: 1200px) {
+  .sp-name-massive { font-size: 80px; letter-spacing: -4px; }
+}
+@media (max-width: 768px) {
+  .sp-name-massive { font-size: 48px; letter-spacing: -2px; margin-bottom: 32px; }
 }
 
 .sp-academic-badge-row {
@@ -323,13 +349,23 @@
 
 @media (max-width: 1024px) {
   .sp-dashboard-layout { grid-template-columns: 1fr; }
-  .sp-hero-pro { padding: 40px; grid-template-columns: 1fr; }
-  .sp-hero-visual-pro { display: none; }
+  .sp-header-main { display: flex; flex-direction: column; align-items: center; }
+  .sp-academic-badge-row, .sp-header-stats-row { justify-content: center; flex-wrap: wrap; }
 }
 
 @media (max-width: 768px) {
+  .sp-page { padding: 20px; }
   .sp-analytics-row { grid-template-columns: 1fr; }
   .sp-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .sp-qa-grid { grid-template-columns: repeat(2, 1fr); }
+  .sp-header-stats-row { gap: 24px; }
+  .sp-h-stat-num { font-size: 20px; }
+}
+
+@media (max-width: 480px) {
+  .sp-stats-grid { grid-template-columns: 1fr; }
+  .sp-qa-grid { grid-template-columns: 1fr; }
+  .sp-academic-badge { min-width: 100%; }
 }
 
 /* ─── Regenerated Project Alert Card ─── */

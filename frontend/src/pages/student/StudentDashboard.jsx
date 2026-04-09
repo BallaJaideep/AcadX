@@ -635,7 +635,6 @@ const StudentDashboard = () => {
 
         <div className="sp-header-controls">
            <div className="sp-live-sync-indicator">
-              <div className="sp-pulse-dot" />
               <span>SYSTEM LIVE: {lastSync.toLocaleTimeString()}</span>
            </div>
            <button

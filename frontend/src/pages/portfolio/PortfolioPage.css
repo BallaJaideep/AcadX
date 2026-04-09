@@ -251,12 +251,48 @@
 .vp-solid-back-btn:hover { background: white; color: var(--pink-primary); transform: translateX(-5px); }
 
 /* Responsive */
+@media (max-width: 1200px) {
+  .vp-solid-hero { padding: 60px; }
+  .vp-solid-name { font-size: 56px; letter-spacing: -2px; }
+  .vp-solid-dossier-sheet { padding: 60px; }
+}
+
 @media (max-width: 900px) {
-  .vp-solid-hero { padding: 48px; }
-  .vp-solid-hero-layout { flex-direction: column; text-align: center; }
-  .vp-solid-meta { justify-content: center; }
-  .vp-solid-kpis { justify-content: center; }
-  .vp-solid-dossier-sheet { padding: 40px; }
-  .vp-solid-projects-grid, .vp-solid-vault-box { grid-template-columns: 1fr; }
-  .vp-vault-upload-cta { border-right: none; border-bottom: 2px solid white; padding: 0 0 32px; }
+  .vp-portfolio-solid-root { padding: 20px 16px; }
+  .vp-solid-hero { padding: 48px 24px; border-radius: 30px; margin-bottom: 24px; }
+  .vp-solid-hero-layout { flex-direction: column; text-align: center; gap: 32px; }
+  .vp-solid-orb { width: 160px; height: 160px; margin: 0 auto; }
+  .vp-solid-meta { justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+  .vp-solid-tag { font-size: 14px; }
+  .vp-solid-kpis { justify-content: center; gap: 12px; }
+  .vp-solid-kpi-box { padding: 16px; min-width: 110px; }
+  .vp-kpi-val { font-size: 24px; }
+  
+  .vp-portfolio-sheet-container { margin-top: 0; }
+  .vp-solid-dossier-sheet { padding: 32px 24px; border-radius: 32px; }
+  .vp-solid-tagline { font-size: 24px; padding-left: 20px; }
+  .vp-solid-about { font-size: 16px; }
+  
+  .vp-solid-skills-grid { grid-template-columns: 1fr; }
+  .vp-solid-projects-grid { grid-template-columns: 1fr; gap: 20px; }
+  .vp-solid-project-box { padding: 24px; }
+  
+  .vp-solid-vault-box { grid-template-columns: 1fr; padding: 24px; gap: 24px; }
+  .vp-vault-upload-cta { 
+    flex-direction: column; 
+    border-right: none; 
+    border-bottom: 2px solid white; 
+    padding: 0 0 24px; 
+    text-align: center;
+  }
+  .vp-vault-select-btn { margin-left: 0; width: 100%; text-align: center; }
+  .vp-record-info-vibrant { flex-direction: column; text-align: center; gap: 12px; }
+  .vp-record-btns { flex-direction: column; width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .vp-solid-name { font-size: 38px; }
+  .vp-btn-solid-pink { width: 100%; justify-content: center; padding: 16px; font-size: 14px; }
+  .vp-solid-kpis { flex-direction: column; align-items: center; width: 100%; }
+  .vp-solid-kpi-box { width: 100%; }
 }

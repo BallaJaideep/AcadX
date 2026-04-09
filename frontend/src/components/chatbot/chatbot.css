@@ -273,3 +273,66 @@
   font-size: 28px; 
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
 }
+
+/* ================================================================
+   RESPONSIVE DESIGN
+   ================================================================ */
+
+@media (max-width: 768px) {
+  .exe-chat-window {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh; /* dynamic viewport height */
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+    animation: slideUpMobile 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes slideUpMobile {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .exe-chat-header {
+    padding: 24px 20px;
+    border-radius: 0;
+  }
+
+  .messages-container {
+    padding: 20px;
+  }
+
+  .exe-chat-input-zone {
+    padding: 16px 20px;
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+
+  .exe-chatbot-fab {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 18px;
+  }
+
+  .spark-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .welcome-area {
+    padding: 32px 20px;
+  }
+
+  .welcome-banner p {
+    font-size: 20px;
+  }
+}
+
+@media (max-height: 650px) and (min-width: 769px) {
+  .exe-chat-window {
+    height: 80vh;
+    bottom: 80px;
+  }
+}
