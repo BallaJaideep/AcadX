@@ -167,6 +167,41 @@
   margin-top: 12px;
 }
 
+/* --- Responsive Protocols --- */
+@media (max-width: 768px) {
+  .exe-support-system { gap: 16px; padding: 16px 0; }
+  .support-request-panel { padding: 16px; border-radius: 16px; }
+  .exe-textarea-v2 { font-size: 13px; padding: 12px; }
+  .vp-btn-glow { width: 100%; height: 44px; display: flex; align-items: center; justify-content: center; }
+
+  .doubt-card-header { 
+    padding: 12px 16px; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 12px; 
+  }
+  .doubt-summary { width: 100%; align-items: flex-start; }
+  .reason-preview { 
+    max-width: 100%; 
+    white-space: normal; /* Wrap text on mobile for visibility */
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .doubt-meta { width: 100%; justify-content: space-between; padding-top: 8px; border-top: 1px solid #f1f5f9; }
+
+  .doubt-card-body { padding: 0 16px 16px; }
+  .ai-diagnostic-result, .faculty-resolution-block { padding: 12px; margin-top: 12px; }
+  .resolution-text { font-size: 13px; }
+  
+  .history-btn { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .support-request-panel { margin-left: -5px; margin-right: -5px; border-radius: 12px; }
+  .doubt-card { border-radius: 12px; }
+  .status-icon { width: 14px; height: 14px; }
+}
+
 /* ── History Control ── */
 .history-toggle-area {
   display: flex;

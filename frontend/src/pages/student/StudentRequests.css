@@ -344,12 +344,14 @@
 }
 
 .sr-recreate-proj-info {
-  display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0;
+  display: flex; align-items: flex-start; gap: 14px; flex: 1; min-width: 0;
 }
+.sr-recreate-proj-info svg { margin-top: 4px; flex-shrink: 0; }
 
 .sr-recreate-proj-title {
   font-size: 15px; font-weight: 800; color: #0f172a;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  word-wrap: break-word; overflow-wrap: break-word;
+  line-height: 1.4;
 }
 
 .sr-recreate-proj-sub {
@@ -843,8 +845,10 @@
 @media (max-width: 768px) {
   .sr-root { padding: 24px 16px 80px; }
   .sr-title { font-size: 34px; }
-  .sr-card { padding: 24px 24px 20px 34px; }
-  .sr-card-top { flex-direction: column; }
+  .sr-card { padding: 24px 20px 20px 28px; }
+  .sr-card-accent { width: 6px; }
+  .sr-card-top { flex-direction: column; gap: 14px; }
+  .sr-status-badge { width: fit-content; order: -1; }
   .sr-request-mentor-hero { padding: 28px 24px; }
   .sr-rmh-title { font-size: 24px; }
   .sr-rmh-stats { gap: 20px; flex-wrap: wrap; }
@@ -852,7 +856,15 @@
   .sr-filter-tab { padding: 9px 14px; font-size: 12px; }
   .sr-recreate-project-row { flex-direction: column; align-items: flex-start; }
   .sr-recreate-request-btn { width: 100%; justify-content: center; }
-  .sr-pagination { gap: 8px; }
+  .sr-pagination { gap: 8px; flex-wrap: wrap; justify-content: center; }
   .sr-page-btn { padding: 10px 16px; font-size: 12px; }
+  .sr-page-numbers { order: 2; width: 100%; justify-content: center; margin-top: 10px; }
   .sr-header-top { flex-direction: column; }
+  
+  .sr-faculty-row { padding: 14px; gap: 12px; }
+  .sr-faculty-avatar { width: 36px; height: 36px; font-size: 16px; }
+  .sr-faculty-name { font-size: 14px; }
+  
+  .sr-card-footer { gap: 12px; }
+  .sr-action-badge { margin-left: 0; width: 100%; text-align: center; }
 }

@@ -24,6 +24,16 @@ const Chatbot = () => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
+  // Handle body lock for mobile responsiveness
+  useEffect(() => {
+    if (open && window.innerWidth <= 768) {
+      document.body.classList.add("chat-lock");
+    } else {
+      document.body.classList.remove("chat-lock");
+    }
+    return () => document.body.classList.remove("chat-lock");
+  }, [open]);
+
   const sendMessage = async (text) => {
     if (!text.trim()) return;
     setMessages((prev) => [...prev, { sender: "user", text }]);

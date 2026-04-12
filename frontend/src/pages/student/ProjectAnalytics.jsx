@@ -125,7 +125,7 @@ const ProjectAnalytics = () => {
   };
 
   return (
-    <div className="pa-root">
+    <div className="pa-root fade-in">
       <div className="pa-container">
         {/* HEADER */}
         <header className="pa-header">
@@ -140,7 +140,7 @@ const ProjectAnalytics = () => {
 
         {isProjectCompleted && !githubUrl && (
           <div className="pa-warning-banner">
-            <AlertCircle size={24} />
+            <AlertCircle size={28} />
             <div>
               <h3>Project Completion Flagged</h3>
               <p>This project is officially marked completed, but no GitHub repository is linked. Please link your repository below to verify your work.</p>
@@ -152,7 +152,7 @@ const ProjectAnalytics = () => {
           {/* MAIN SCORE CARD */}
           <div className="pa-card pa-score-card">
             <div className="pa-card-header">
-              <Activity size={20} /> <h2>Overall Health Score</h2>
+              <Activity size={22} /> <h2>Overall Health Score</h2>
             </div>
             
             <div className="pa-score-display">
@@ -166,7 +166,7 @@ const ProjectAnalytics = () => {
                     strokeDasharray={`${(healthData.currentHealthScore / 100) * 283} 283`}
                   />
                 )}
-                <text x="50" y="55" className="pa-score-text" fill={hasSnapshots ? scoreColor : '#fff'}>
+                <text x="50" y="50" dy=".3em" className="pa-score-text" fill={hasSnapshots ? scoreColor : '#64748b'}>
                   {hasSnapshots ? healthData.currentHealthScore : "N/A"}
                 </text>
               </svg>
@@ -177,11 +177,89 @@ const ProjectAnalytics = () => {
             </div>
           </div>
 
+          {/* PATTERN & ANOMALY ENGINE */}
+          <div className="pa-card pa-engine-card">
+            <div className="pa-card-header">
+              <BrainCircuit size={22} color="#8b5cf6" /> <h2>Behavioral & Risk Engine</h2>
+            </div>
+            
+            <div className="pa-engine-display">
+              <div className="pa-radar-ring">
+                <Radar size={32} color={getEngineColor(engineResult.type)} className={engineResult.type === "pending" ? "" : "pulse-anim"} />
+              </div>
+              <div className="pa-engine-text">
+                <h3 style={{ color: getEngineColor(engineResult.type) }}>{engineResult.title}</h3>
+                <p>{engineResult.text}</p>
+                {engineResult.type !== "pending" && (
+                  <div className="pa-engine-scanline" />
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* ACTIVITY HEATMAP */}
+          <div className="pa-card pa-heatmap-card">
+            <div className="pa-card-header">
+              <Layout size={22} /> <h2>30-Day Velocity Map</h2>
+            </div>
+            
+            <div className="pa-heatmap-container">
+              {(!healthData || !healthData.githubUrl) ? (
+                <div className="pa-empty-state">Connect a repository to view velocity map</div>
+              ) : (
+                <div className="pa-heatmap-grid">
+                  {Array.from({ length: 30 }).map((_, i) => {
+                    const count = healthData.snapshots?.[i]?.commitsCount || 0;
+                    const bg = count === 0 ? '#f1f5f9' : count < 3 ? '#86efac' : count < 6 ? '#22c55e' : '#166534';
+                    
+                    const d = new Date();
+                    d.setDate(d.getDate() - (29 - i));
+
+                    return (
+                      <div key={i} className="pa-heatmap-block" style={{ background: bg }}>
+                        <div className="pa-tooltip">
+                          {count} commits on {d.toLocaleDateString()}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              <div className="pa-heatmap-legend">
+                <span>Less</span>
+                <div style={{background: '#f1f5f9', border: '1px solid #e2e8f0'}} className="pa-legend-box" />
+                <div style={{background: '#86efac'}} className="pa-legend-box" />
+                <div style={{background: '#22c55e'}} className="pa-legend-box" />
+                <div style={{background: '#166534'}} className="pa-legend-box" />
+                <span>More</span>
+              </div>
+            </div>
+          </div>
+
+          {/* QUICK STATS */}
+          <div className="pa-card pa-stats-card">
+            <div className="pa-card-header">
+              <BarChart2 size={22} /> <h2>Recent Activity (24h)</h2>
+            </div>
+            <div className="pa-stats-grid">
+              <div className="pa-stat-box">
+                <GitCommit size={28} color="#4338ca" />
+                <span className="pa-stat-val">{hasSnapshots && healthData.snapshots[0] ? healthData.snapshots[0].commitsCount : 0}</span>
+                <span className="pa-stat-lab">Commits</span>
+              </div>
+              <div className="pa-stat-box">
+                <GitPullRequest size={28} color="#db2777" />
+                <span className="pa-stat-val">{hasSnapshots && healthData.snapshots[0] ? healthData.snapshots[0].prsOpened : 0}</span>
+                <span className="pa-stat-lab">Pull Requests</span>
+              </div>
+            </div>
+          </div>
+
           {/* GITHUB LINKING CARD (STUDENTS ONLY) */}
           {user?.role === 'student' && (
-            <div className="pa-card">
+            <div className="pa-card pa-repo-card">
               <div className="pa-card-header">
-                <Github size={20} /> <h2>Repository Integration</h2>
+                <Github size={22} /> <h2>Repository Integration</h2>
               </div>
               
               <div className="pa-repo-setup">
@@ -199,97 +277,18 @@ const ProjectAnalytics = () => {
                     disabled={isUpdatingGithub || !githubUrl}
                     className="pa-btn-primary"
                   >
-                    {isUpdatingGithub ? "Linking..." : "Synchronize Repository"}
+                    {isUpdatingGithub ? "Linking..." : "Synchronize"}
                   </button>
                 </div>
                 {healthData?.githubUrl && (
                   <div className="pa-linked-status">
                     <span className="pa-status-dot active"></span>
-                    Currently tracking: <a href={healthData.githubUrl} target="_blank" rel="noreferrer">{new URL(healthData.githubUrl).pathname.slice(1)}</a>
+                    <span>Tracking: <a href={healthData.githubUrl} target="_blank" rel="noreferrer">{new URL(healthData.githubUrl).pathname.slice(1)}</a></span>
                   </div>
                 )}
               </div>
             </div>
           )}
-
-          {/* ACTIVITY HEATMAP */}
-          <div className="pa-card pa-heatmap-card">
-            <div className="pa-card-header">
-              <Layout size={20} /> <h2>30-Day Velocity Map</h2>
-            </div>
-            
-            <div className="pa-heatmap-container">
-              {(!healthData || !healthData.githubUrl) ? (
-                <div className="pa-empty-state">Connect a repository to view velocity map</div>
-              ) : (
-                <div className="pa-heatmap-grid">
-                  {Array.from({ length: 30 }).map((_, i) => {
-                    const count = healthData.snapshots?.[i]?.commitsCount || 0;
-                    const bg = count === 0 ? '#e2e8f0' : count < 3 ? '#86efac' : count < 6 ? '#22c55e' : '#166534';
-                    
-                    // Simple mock date label
-                    const d = new Date();
-                    d.setDate(d.getDate() - (29 - i));
-
-                    return (
-                      <div key={i} className="pa-heatmap-block" style={{ background: bg }}>
-                        <div className="pa-tooltip">
-                          {count} commits on {d.toLocaleDateString()}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-              <div className="pa-heatmap-legend">
-                <span>Less</span>
-                <div style={{background: '#e2e8f0'}} className="pa-legend-box" />
-                <div style={{background: '#86efac'}} className="pa-legend-box" />
-                <div style={{background: '#22c55e'}} className="pa-legend-box" />
-                <div style={{background: '#166534'}} className="pa-legend-box" />
-                <span>More</span>
-              </div>
-            </div>
-          </div>
-
-          {/* PATTERN & ANOMALY ENGINE */}
-          <div className="pa-card pa-engine-card">
-            <div className="pa-card-header">
-              <BrainCircuit size={20} color="#8b5cf6" /> <h2>Behavioral & Risk Engine</h2>
-            </div>
-            
-            <div className="pa-engine-display">
-              <div className="pa-radar-ring">
-                <Radar size={32} color={getEngineColor(engineResult.type)} className={engineResult.type === "pending" ? "" : "pulse-anim"} />
-              </div>
-              <div className="pa-engine-text">
-                <h3 style={{ color: getEngineColor(engineResult.type) }}>{engineResult.title}</h3>
-                <p>{engineResult.text}</p>
-                {engineResult.type !== "pending" && (
-                  <div className="pa-engine-scanline" />
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* QUICK STATS */}
-          <div className="pa-card pa-stats-card">
-            <div className="pa-card-header">
-              <BarChart2 size={20} /> <h2>Recent Activity (24h)</h2>
-            </div>
-            <div className="pa-stats-grid">
-              <div className="pa-stat-box">
-                <GitCommit size={24} color="#6366f1" />
-                <span className="pa-stat-val">{hasSnapshots && healthData.snapshots[0] ? healthData.snapshots[0].commitsCount : 0}</span>
-                <span className="pa-stat-lab">Commits</span>
-              </div>
-              <div className="pa-stat-box">
-                <GitPullRequest size={24} color="#ec4899" />
-                <span className="pa-stat-val">{hasSnapshots && healthData.snapshots[0] ? healthData.snapshots[0].prsOpened : 0}</span>
-                <span className="pa-stat-lab">Pull Requests</span>
-              </div>
-            </div>
-          </div>
           
         </div>
       </div>

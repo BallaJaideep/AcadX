@@ -637,13 +637,27 @@ const StudentDashboard = () => {
            <div className="sp-live-sync-indicator">
               <span>SYSTEM LIVE: {lastSync.toLocaleTimeString()}</span>
            </div>
-           <button
-             onClick={() => navigate("/student/generate-record")}
-             className="sp-premium-office-btn"
-           >
-             <ShieldCheck size={20} />
-             Technical Records Office
-           </button>
+           
+           <div style={{ display: 'flex', gap: '12px' }}>
+             {user?.resumePath && (
+               <a 
+                 href={fileUrl(user.resumePath)} 
+                 target="_blank" 
+                 rel="noreferrer" 
+                 className="sp-premium-office-btn"
+                 style={{ borderColor: '#6366F1', color: '#6366F1' }}
+               >
+                 <FileText size={18} /> View Resume
+               </a>
+             )}
+             <button
+               onClick={() => navigate("/student/generate-record")}
+               className="sp-premium-office-btn"
+             >
+               <ShieldCheck size={20} />
+               Technical Records Office
+             </button>
+           </div>
         </div>
       </header>
 

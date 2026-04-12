@@ -120,6 +120,19 @@
   background: #fef2f2;
 }
 
+@media (max-width: 768px) {
+  .exe-ai-brief { padding: 15px; }
+  .ai-suggestion-title { font-size: 13px; }
+  .ai-brief-footer { 
+    grid-template-columns: 1fr; 
+    gap: 8px; 
+    margin-top: 15px;
+    padding-top: 12px;
+  }
+  .exe-btn-ghost-success, .exe-btn-ghost-danger { height: 40px; display: flex; align-items: center; justify-content: center; }
+  .ai-link-pill { width: 100%; text-align: center; justify-content: center; padding: 6px; }
+}
+
 .label-small-gold {
   font-size: 10px;
   font-weight: 800;

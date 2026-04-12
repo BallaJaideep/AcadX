@@ -110,12 +110,15 @@ const PortfolioPage = () => {
     fd.append("resume", file);
 
     try {
-      await api.post("/users/me/resume", fd, {
+      const res = await api.post("/users/me/resume", fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      loadResume();
+      // ✅ Synchronize with global context
+      setUser({ ...user, resumePath: res.data.resumePath });
+      setResumePath(res.data.resumePath);
+      alert("Resume deployed successfully to the Vault.");
     } catch {
-      alert("Resume upload failed");
+      alert("Resume deployment protocol failed.");
     }
   };
 

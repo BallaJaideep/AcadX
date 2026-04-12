@@ -210,20 +210,26 @@ const ProjectDetails = () => {
                 </button>
               </div>
             </div>
-            <div className="vp-ticket-basic-info">
-              <div className="vp-info-blob">
-                <Calendar size={14} /> 
-                <span>Registered: {new Date(project.createdAt).toLocaleDateString()}</span>
+              <div className="vp-ticket-basic-info">
+                <div className="vp-info-blob">
+                  <Calendar size={14} /> 
+                  <span>Registered: {new Date(project.createdAt).toLocaleDateString()}</span>
+                </div>
+                <div className="vp-info-blob">
+                  <Zap size={14} /> 
+                  <span>Domain: {project.domain || "N/A"}</span>
+                </div>
+                <div className="vp-info-blob">
+                  <Hash size={14} /> 
+                  <span>Type: {project.projectType || "N/A"}</span>
+                </div>
+                {project.mentorId && (
+                  <div className="vp-info-blob mentor-active">
+                    <Shield size={14} /> 
+                    <span>Expert Secured</span>
+                  </div>
+                )}
               </div>
-              <div className="vp-info-blob">
-                <Zap size={14} /> 
-                <span>Domain: {project.domain || "N/A"}</span>
-              </div>
-              <div className="vp-info-blob">
-                <Hash size={14} /> 
-                <span>Type: {project.projectType || "N/A"}</span>
-              </div>
-            </div>
           </div>
 
           <div className="vp-ticket-body">
@@ -289,12 +295,12 @@ const ProjectDetails = () => {
                       </div>
                     )}
 
-                    <div style={{ padding: '20px', background: '#0f172a', borderRadius: '12px', border: '1px solid #1e293b', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div style={{ paddingRight: '16px' }}>
-                         <h3 style={{ margin: '0 0 4px', fontSize: '1.1rem', color: '#fff' }}>Performance Analytics Dashboard</h3>
-                         <p style={{ margin: 0, fontSize: '0.9rem', color: '#94a3b8' }}>View commit heatmaps, pull requests, and real-time health scores.</p>
+                    <div className="vp-analytics-card">
+                      <div className="vp-analytics-info">
+                         <h3>Performance Analytics Dashboard</h3>
+                         <p>View commit heatmaps, pull requests, and real-time health scores.</p>
                       </div>
-                      <Link to={`/student/project/${id}/analytics`} style={{ background: 'var(--brand)', color: 'white', padding: '12px 24px', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap', transition: 'transform 0.2s', display: 'block' }}>
+                      <Link to={`/student/project/${id}/analytics`} className="vp-analytics-btn">
                         Open Analytics
                       </Link>
                     </div>
@@ -307,74 +313,27 @@ const ProjectDetails = () => {
             <div className="vp-ticket-row">
               <div className="vp-ticket-section">
                 <div className="vp-section-label"><Shield size={16} /> Technical Mentorship</div>
-                {project.mentor ? (
-                  <div className="vp-ticket-mentor">
-                    <div className="vp-mentor-orb" style={{ background: cfg.bar }}>{project.mentor.name?.[0]}</div>
-                    <div className="vp-mentor-details">
-                      <span className="vp-mentor-name">{project.mentor.name}</span>
-                      <span className="vp-mentor-role">Lead Expert</span>
-                    </div>
-                  </div>
-                ) : (
+                {!project.mentorId ? (
                   <div className="vp-ticket-mentor empty">
                     <p>No mentor allocated.</p>
                     {user?.role === "student" && (
                       <Link to={`/student/request-mentor?projectId=${project._id}`} className="vp-ticket-btn-action">Request Expert</Link>
                     )}
                   </div>
+                ) : (
+                  <div className="vp-ticket-mentor">
+                    <div className="vp-mentor-orb" style={{ background: "var(--G-vibrant)" }}>
+                      {project.mentorId.name?.charAt(0).toUpperCase() || "E"}
+                    </div>
+                    <div className="vp-mentor-details">
+                      <span className="vp-mentor-name">{project.mentorId.name}</span>
+                      <span className="vp-mentor-role">Expert Advisor</span>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
 
-            {/* PROJECT COMMUNICATION THREAD */}
-            {project.mentor && (user?.role === "student" || ["faculty", "hod", "admin"].includes(user?.role)) && (
-              <div className="vp-ticket-row">
-                <div className="vp-ticket-section large">
-                  <div className="vp-section-label"><MessageSquare size={16} /> Technical Discussion Board</div>
-                  <div className="vp-discussion-board">
-                    <div className="vp-discussion-history">
-                      {project.messages && project.messages.length > 0 ? (
-                        project.messages.map((msg, idx) => {
-                           const isMe = msg.sender?._id === user?._id;
-                           return (
-                             <div key={idx} className={`vp-message-bubble ${isMe ? 'me' : 'them'}`}>
-                               <div className="vp-msg-meta">
-                                 <span className="vp-msg-author">{msg.sender?.name || "Unknown"}</span>
-                                 <span className="vp-msg-time">{new Date(msg.createdAt).toLocaleString()}</span>
-                               </div>
-                               <div className="vp-msg-text">{msg.text}</div>
-                             </div>
-                           );
-                        })
-                      ) : (
-                        <div className="vp-empty-discussion">No messages yet. Open communication regarding technical requirements here.</div>
-                      )}
-                    </div>
-                    <div className="vp-discussion-input-area">
-                      <textarea 
-                        className="vp-discussion-input"
-                        placeholder="Discuss project requirements, updates, or technical issues..."
-                        value={messageText}
-                        onChange={(e) => setMessageText(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' && !e.shiftKey) {
-                            e.preventDefault();
-                            handleSendMessage();
-                          }
-                        }}
-                      />
-                      <button 
-                        className="vp-btn-send-msg" 
-                        onClick={handleSendMessage} 
-                        disabled={isSendingMsg || !messageText.trim()}
-                      >
-                        {isSendingMsg ? "..." : "Post Reply"}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
 
             <div className="vp-ticket-footer">
               <div className="vp-ticket-actions-hub">
@@ -384,12 +343,15 @@ const ProjectDetails = () => {
                   </button>
                 )}
                 <Link to="/milestones" className="vp-ticket-btn-outline"><Clock size={18} /> Milestones</Link>
-                {user?.role === "student" && (
-                  <Link to="/student/complaint" className="vp-ticket-btn-outline"><MessageSquare size={18} /> Support</Link>
-                )}
               </div>
               <div className="vp-ticket-meta-grid">
                 <div className="vp-meta-cell"><span>Department</span><strong>{user?.department || "N/A"}</strong></div>
+                {project.mentorId && (
+                   <div className="vp-meta-cell mentor-cell">
+                     <span>Expert Advisor</span>
+                     <strong>{project.mentorId.name}</strong>
+                   </div>
+                )}
                 <div className="vp-meta-cell"><span>Current Phase</span><strong>{project.progress >= 100 ? "Final Review" : "Research Stage"}</strong></div>
               </div>
             </div>

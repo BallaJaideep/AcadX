@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { Navigate } from "react-router-dom";
 import api from "../../api/client";
 import { useAuth } from "../../context/AuthContext";
-import { RotateCcw, CheckCircle2, XCircle } from "lucide-react";
+import { RotateCcw, CheckCircle2, XCircle, Users, Zap } from "lucide-react";
 import "./MentorRequests.css";
 
 const MentorRequests = () => {
@@ -80,36 +80,43 @@ const MentorRequests = () => {
           </div>
         ) : (
           <div className="exe-request-stack">
-            {requests.map((r) => (
-              <div key={r._id} className="exe-card-medium request-item">
+            {requests.map((request) => (
+              <div key={request._id} className="exe-card-medium request-item">
                 <div className="request-card-grid">
-                  
-                  {/* PROJECT & STUDENT INFO */}
-                  <div className="request-details">
-                    <span className="label-tiny">Project Title</span>
-                    <h3 className="request-project-title">{r.projectId?.title || "Untitled Project"}</h3>
-                    
-                    <div className="petitioner-info">
-                      <div className="info-group">
-                        <span className="label-tiny">Student Petitioner</span>
-                        <p className="info-text">{r.studentId?.name || "N/A"}</p>
-                      </div>
-                      <div className="info-group">
-                        <span className="label-tiny">Email Identifier</span>
-                        <p className="info-text">{r.studentId?.email || "N/A"}</p>
-                      </div>
+                  <div className="request-project-hdr">
+                    <h3 className="request-project-title">
+                      {request.projectId?.title || "Project Title Unavailable"}
+                    </h3>
+                    <div className="request-counter">
+                      ID: {request.projectId?.projectId || "N/A"}
                     </div>
                   </div>
 
-                  {/* PROPOSAL MESSAGE */}
-                  <div className="request-proposal">
-                    <span className="label-tiny">Proposal Brief</span>
-                    <p className="proposal-text">"{r.message || "No contextual message provided."}"</p>
+                  <div className="petitioner-info">
+                    <div className="info-text">
+                      <Users size={14} /> 
+                      <strong>{request.studentId?.name || "Unknown Student"}</strong>
+                    </div>
+                    <div className="info-text">
+                      <Zap size={14} /> 
+                      Sem {request.studentId?.semester || "N/A"} • {request.studentId?.department || "N/A"}
+                    </div>
                   </div>
 
-                  {/* ACTION FOOTER */}
+                  <div className="proposal-box">
+                    <span className="proposal-label">Project Proposal Excerpt</span>
+                    <p className="proposal-text">
+                      {request.projectId?.description 
+                        ? (request.projectId.description.length > 200 
+                            ? request.projectId.description.substring(0, 200) + "..." 
+                            : request.projectId.description)
+                        : "No description provided for this project."
+                      }
+                    </p>
+                  </div>
+
                   <div className="request-actions-container" style={{ gridColumn: "1 / -1", marginTop: "20px" }}>
-                    {rejectForm.id === r._id ? (
+                    {rejectForm.id === request._id ? (
                       <div className="reject-recreate-panel" style={{ width: "100%", background: "#fef3c7", padding: "20px", borderRadius: "12px" }}>
                         <textarea 
                           className="acadx-input-mini" 
@@ -127,16 +134,16 @@ const MentorRequests = () => {
                         />
                         <div style={{ display: "flex", gap: "10px" }}>
                           <button
-                            onClick={() => handleDecision(r._id, "REJECT_AND_RECREATE", { reason: rejectForm.reason, suggestions: rejectForm.suggestions })}
-                            className="exe-btn-success-sm"
+                            onClick={() => handleDecision(request._id, "REJECT_AND_RECREATE", { reason: rejectForm.reason, suggestions: rejectForm.suggestions })}
+                            className="exe-btn exe-btn-success-sm"
                             style={{ background: "#f59e0b" }}
-                            disabled={busyId === r._id}
+                            disabled={busyId === request._id}
                           >
                             Confirm & Recreate
                           </button>
                           <button
                             onClick={() => setRejectForm({ id: null, reason: "", suggestions: "" })}
-                            className="exe-btn-danger-sm"
+                            className="exe-btn exe-btn-danger-sm"
                             style={{ background: "transparent", color: "#64748b", border: "1px solid #e2e8f0" }}
                           >
                             Cancel
@@ -144,28 +151,28 @@ const MentorRequests = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="request-actions" style={{ display: "flex", gap: "12px" }}>
+                      <div className="request-actions">
                         <button
-                          onClick={() => handleDecision(r._id, "APPROVE")}
-                          className="exe-btn-success-sm"
-                          disabled={busyId === r._id}
+                          onClick={() => handleDecision(request._id, "APPROVE")}
+                          className="exe-btn exe-btn-success-sm"
+                          disabled={busyId === request._id}
                         >
-                          <CheckCircle2 size={14} style={{ marginRight: 6 }} /> Approve
+                          <CheckCircle2 size={16} /> Accept Mentorship
                         </button>
                         <button
-                          onClick={() => handleDecision(r._id, "REJECT")}
-                          className="exe-btn-danger-sm"
-                          disabled={busyId === r._id}
+                          onClick={() => handleDecision(request._id, "REJECT")}
+                          className="exe-btn exe-btn-danger-sm"
+                          disabled={busyId === request._id}
                         >
-                          <XCircle size={14} style={{ marginRight: 6 }} /> Decline
+                          <XCircle size={16} /> Decline
                         </button>
                         <button
-                          onClick={() => setRejectForm({ id: r._id, reason: "", suggestions: "" })}
-                          className="exe-btn-success-sm"
-                          style={{ background: "#f59e0b" }}
-                          disabled={busyId === r._id}
+                          onClick={() => setRejectForm({ id: request._id, reason: "", suggestions: "" })}
+                          className="exe-btn exe-btn-success-sm"
+                          style={{ background: "#f59e0b", flex: '1.2' }}
+                          disabled={busyId === request._id}
                         >
-                          <RotateCcw size={14} style={{ marginRight: 6 }} /> Reject & Recreate
+                          <RotateCcw size={16} /> Re-do
                         </button>
                       </div>
                     )}

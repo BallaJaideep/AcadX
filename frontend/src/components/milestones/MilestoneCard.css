@@ -381,16 +381,60 @@
   border-top: 2px dashed #F3EADD;
 }
 
-@media (max-width: 1100px) {
-  .vp-milestone-ticket-wrapper { flex-direction: column; }
+/* ── REFINED RESPONSIVE PROTOCOL ── */
+@media (max-width: 1024px) {
+  .vp-milestone-ticket-wrapper { 
+    flex-direction: column; 
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  }
+  
+  .vp-milestone-main-pass { 
+    padding: 32px 24px; 
+    gap: 20px;
+  }
+
+  .vp-m-card-header { margin-bottom: 20px; }
+  .vp-m-ticket-title { font-size: 22px; }
+
   .vp-milestone-stub { 
     width: 100%; 
     border-left: none; 
-    border-top: 3px dashed #F3EADD; 
+    border-top: 2px dashed #F3EADD; 
     flex-direction: row; 
     justify-content: space-between;
     align-items: center;
+    padding: 24px;
+    background: rgba(254, 249, 231, 0.5);
   }
-  .vp-milestone-stub::before { left: 50%; top: -20px; transform: translateX(-50%); }
-  .vp-milestone-stub::after { display: none; }
+
+  /* Circular perforation adjustment for mobile horizontal line */
+  .vp-milestone-stub::before, .vp-milestone-stub::after {
+    left: auto;
+    width: 30px;
+    height: 30px;
+    background: #F1EFE8;
+  }
+  .vp-milestone-stub::before { top: -15px; left: -15px; }
+  .vp-milestone-stub::after { top: -15px; right: -15px; bottom: auto; }
+
+  .stub-middle { flex: none; }
+  .stub-stat .val { font-size: 24px; }
+  .stub-barcode { display: none; }
+  .stub-top { border: none; padding: 0; }
+}
+
+@media (max-width: 768px) {
+  .vp-m-title-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .vp-m-header-actions { width: 100%; justify-content: space-between; gap: 8px; }
+  .vp-m-ticket-actions { flex-direction: column; gap: 12px; }
+  .ticket-btn { height: 50px; }
+  .vp-m-scroll-content { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .vp-milestone-ticket-wrapper { margin-left: -16px; margin-right: -16px; border-radius: 0; border-left: none; border-right: none; }
+  .vp-m-ticket-title { font-size: 19px; }
+  .res-link { width: 100%; justify-content: center; }
+  .stub-id { font-size: 16px; }
 }

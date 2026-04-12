@@ -45,26 +45,36 @@ const AI_TIPS = [
 ];
 
 /* ── Circular Progress ─────────────────────────────────────── */
-const CircularProgress = ({ pct, color = "#7C3AED", size = 64 }) => {
-  const r = 28;
+const CircularProgress = ({ pct, color = "#7C3AED", size = 76 }) => {
+  const r = 32;
+  const cx = 38;
+  const cy = 38;
   const circ = 2 * Math.PI * r;
   const dash = ((pct || 0) / 100) * circ;
   return (
-    <svg width={size} height={size} viewBox="0 0 70 70" style={{ transform: 'rotate(-90deg)' }}>
-      <circle cx="35" cy="35" r={r} fill="none" stroke="rgba(167, 139, 250, 0.1)" strokeWidth="6" />
+    <svg width={size} height={size} viewBox="0 0 76 76" style={{ overflow: 'visible' }}>
+      {/* Background Track */}
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(167, 139, 250, 0.15)" strokeWidth="8" />
+      {/* Foreground Indicator */}
       <circle
-        cx="35" cy="35" r={r} fill="none" stroke={color} strokeWidth="6"
+        cx={cx} cy={cy} r={r} fill="none" stroke={color} strokeWidth="8"
         strokeDasharray={`${dash} ${circ}`}
         strokeLinecap="round"
-        style={{ transition: "stroke-dasharray 1s ease-in-out" }}
+        style={{ 
+          transition: "stroke-dasharray 1.5s cubic-bezier(0.19, 1, 0.22, 1)", 
+          transform: "rotate(-90deg)", 
+          transformOrigin: "50% 50%",
+          filter: `drop-shadow(0 4px 6px ${color}40)`
+        }}
       />
+      {/* Centered Text */}
       <text
-        x="35" y="-35"
+        x={cx} y={cy}
         textAnchor="middle"
-        fontSize="14"
+        fontSize="18"
         fontWeight="900"
-        fill="#1e293b"
-        style={{ transform: 'rotate(90deg)', dominantBaseline: 'middle' }}
+        fill="#0f172a"
+        style={{ dominantBaseline: 'central' }}
       >
         {pct}%
       </text>
@@ -284,7 +294,7 @@ const MyProjects = () => {
         {/* ── SECTION 3: ANALYTICS & INSIGHT BOXES ── */}
         <div className="vp-insights-row">
           {/* Overview */}
-          <div className="vp-card vp-analytics-card">
+          <div className="vp-card vp-impact-card">
             <div className="vp-card-hd">
               <div className="vp-card-ico"><BarChart2 size={18} /></div>
               <div>
@@ -292,7 +302,7 @@ const MyProjects = () => {
                 <p>Academic productivity record</p>
               </div>
             </div>
-            <div className="vp-analytics-body">
+            <div className="vp-impact-body">
               <div className="vp-donut">
                 <CircularProgress pct={productivityScore} color="var(--brand)" />
                 <span className="vp-donut-label">SCORE</span>
@@ -461,9 +471,16 @@ const MyProjects = () => {
                         <button className="vp-btn-details" onClick={() => navigate(`/student/project/${p._id}`)}>
                           Enterprise View <ArrowRight size={14} />
                         </button>
-                        <Link to={`/student/request-mentor?projectId=${p._id}`} className="vp-btn-mentor-outline" title="Consult Expert">
-                          <Users size={16} />
-                        </Link>
+                        {!p.mentorId ? (
+                          <Link to={`/student/request-mentor?projectId=${p._id}`} className="vp-btn-mentor-outline" title="Consult Expert">
+                            <Users size={16} />
+                          </Link>
+                        ) : (
+                          <div className="vp-assigned-mentor-badge" title={`Assigned: ${p.mentorId.name || "Expert"}`}>
+                            <Shield size={14} /> 
+                            <span>{p.mentorId.name ? p.mentorId.name.split(' ')[0] : 'Expert'}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );

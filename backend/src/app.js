@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
 
 /* ======================
    ROUTE IMPORTS
@@ -46,10 +48,26 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 // Serve uploaded files
-app.use(
-  "/uploads",
-  express.static(path.join(process.cwd(), "uploads"))
-);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const uploadsPath = path.resolve(__dirname, "..", "uploads");
+
+// High-Visibility Static File Server
+app.get("/uploads/*", (req, res) => {
+  // req.params[0] will contain the path after /uploads/
+  const fileSubPath = req.params[0];
+  const absolutePath = path.join(uploadsPath, fileSubPath);
+  
+  if (fs.existsSync(absolutePath)) {
+    return res.sendFile(absolutePath);
+  } else {
+    return res.status(404).json({
+      message: "File not found on disk",
+      requestedPath: req.originalUrl,
+      resolvedPath: absolutePath
+    });
+  }
+});
 
 // Request logger (DEV)
 app.use((req, res, next) => {
