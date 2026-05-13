@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="./acadx_logo_shield_bolt_1772917078257.png" alt="AcadX Logo" width="200" />
   
   # 🚀 AcadX (ELOR Portal)
   **AI-Powered University Project & Skill Development Platform**
